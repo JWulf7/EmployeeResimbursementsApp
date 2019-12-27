@@ -26,7 +26,7 @@ create table userRoles (
 create table users (
 	userId Serial Primary key,
 	userName varchar (50) not null unique,
-	userPass varchar (50) not null,
+	userPass varchar (150) not null,
 	firstName varchar (100) not null,
 	lastName varchar (100) not null,
 	email varchar (150),
@@ -71,6 +71,6 @@ insert into userRoles (roleId, userrole)
 
 /*************************COUPLE USERS TO START***********************************/
 insert into users (userName, userPass, firstName, lastName, email, userRole)
-	values ('Manager', 'Password1', 'Jonathan', 'Wulf', 'yadayada@yada.com', 2);
+	values ('Manager', '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'Jonathan', 'Wulf', 'yadayada@yada.com', 2);
 insert into users (userName, userPass, firstName, lastName, email, userRole)
-	values ('Employee', 'Password1', 'Larry', 'King', 'Larry@yada.com', 1);
+	values ('Employee', '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'Larry', 'King', 'Larry@yada.com', 1);
