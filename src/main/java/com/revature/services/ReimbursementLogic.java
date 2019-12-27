@@ -32,6 +32,21 @@ public class ReimbursementLogic {
 		return null;
 	}
 	
+	public int enumToStatus(ReimStatus statusEnum) {
+		int status;
+		if(statusEnum == ReimStatus.Pending) {
+			status = 0;
+			return status;
+		} else if(statusEnum == ReimStatus.Approved) {
+			status = 1;
+			return status;
+		} else if(statusEnum == ReimStatus.Denied) {
+			status = -1;
+			return status;
+		}
+		else return 100;
+	}
+	
 	public ReimTypes typeToEnum(int typeNum) {
 		ReimTypes type;
 		if(typeNum == 1) {
@@ -50,8 +65,33 @@ public class ReimbursementLogic {
 		return null;
 	}
 	
+	public int enumToType(ReimTypes typeEnum) {
+		int type;
+		if(typeEnum == ReimTypes.Lodging) {
+			type = 1;
+			return type;
+		} else if (typeEnum == ReimTypes.Travel) {
+			type = 2;
+			return type;
+		} else if (typeEnum == ReimTypes.Food) {
+			type = 3;
+			return type;
+		} else if (typeEnum == ReimTypes.Other) {
+			type = 4;
+			return type;
+		}
+		return 100;
+	}
+	
 	public TreeMap<Integer, Reimbursement> grabCompleteReimbursements(int userID) {
 		TreeMap<Integer, Reimbursement> reimbursements = rDAO.getReimbursementsFromUserId(userID);
+		for(int i = 1; i <= reimbursements.size(); i++) {
+			reimbursements.get(i).setStatus(statusToEnum(reimbursements.get(i).getStatusNum()));
+			reimbursements.get(i).setType(typeToEnum(reimbursements.get(i).getTypeNum()));
+		}
+		return reimbursements;
 	}
+	
+	
 	
 }

@@ -2,6 +2,8 @@ package com.revature.services;
 
 import java.util.TreeMap;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.revature.models.ReimStatus;
 import com.revature.models.ReimTypes;
 import com.revature.models.Reimbursement;
@@ -16,23 +18,23 @@ public class UserLogic {
 
 	UsersDAO uDAO = new UsersDAOImpl();
 	ReimbursementsDAO rDAO = new ReimbursementsDAOImpl();
-	
+	ReimbursementLogic rLogic = new ReimbursementLogic();
 	
 	
 	// grab a whole user to work with -- not complete yet
 	public User grabWholeUser(String userName, String password) {
 		User user = uDAO.getUserByUserName(userName);
-		TreeMap<Integer, Reimbursement> reimbursements = rDAO.getReimbursementsFromUserId(user.getUserId());
-		
-		
+		if(user != null) {
+			TreeMap<Integer, Reimbursement> reimbursements = rLogic.grabCompleteReimbursements(user.getUserId());
+		user.setRole(roleToEnum(user.getRoleNum()));
 		return user;
+		} else {
+			return null;
+		}
 	}
 	
 	
-	// convert ints to enums
-	public User userWithEnums(User user) {
-		
-	}
+
 	
 	
 
@@ -48,4 +50,13 @@ public class UserLogic {
 		}
 		return null;
 	}
+	
+	
+	public User login(String username, String password) {
+		password = DigestUtils.sha256Hex(password);
+		User user = grabWholeUser(username, password);
+		return user;
+	}
+	
+	
 }
