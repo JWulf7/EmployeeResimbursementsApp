@@ -1,6 +1,8 @@
 package com.revature.web;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
 import javax.servlet.RequestDispatcher;
@@ -12,34 +14,57 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
+import com.revature.models.UserLogin;
 import com.revature.services.UserLogic;
 
 public class LoginServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(LoginServlet.class);
 	UserLogic uLogic = new UserLogic();
+	//instantiate ObjectMapper ~~ provides functionality for reading and writing JSON
+	private static ObjectMapper om = new ObjectMapper();
 	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 		throws ServletException, IOException {
-		String username = req.getParameter("username");
-		String passwordB4 = req.getParameter("password");
-		
+//		
+		// get BufferedReader to read text from char-input stream
+		BufferedReader reader = req.getReader(); 
+		// mutable string, concat from reader
+		StringBuilder jsonInput = new StringBuilder();
+		// parse over the reader object that is reading the request and throw into a single string(builder)
+		String line = reader.readLine();
+		while(line != null) {
+			jsonInput.append(line);
+			line = reader.readLine();
+		}
+		String jsonInputString = jsonInput.toString();
+		// turn our JSON from Http Req into an Object in Java
+		UserLogin uLogin = om.readValue(jsonInputString, UserLogin.class); // java object representation of info sent in POST reqest
+		String username = uLogin.getUsername();
+		String passwordB4 = uLogin.getPassword();
 		logger.info("Attempted login with username: " + username);
-		User user = uLogic.login(username, passwordB4);
+		User loggedUser = uLogic.login(username, passwordB4);  // checks if user/password is correct and returns whole user object
 		
-		if(user != null) {
-			HttpSession session = req.getSession();
-			session.setAttribute("username", username);
-			RequestDispatcher rd = req.getRequestDispatcher("employee/project1-employee.html");
-			rd.forward(req, res);
+		
+		if(loggedUser != null) {
+			HttpSession session = req.getSession();		// gets current session or creates one if did not exist
+			// give the session a "username" attribute equal to username of uLogin object we created from the JSON
+			session.setAttribute("username", username);	
+			
+			// 
+			PrintWriter outputStream = res.getWriter(); // prints formatted representations of objects to a text output stream
+			res.setContentType("application/json"); 	// creating the response, and setting the type to JSON
+			outputStream.println(om.writeValueAsString(loggedUser));	// the response writer, PrintWriter outStream, prints the values of loggedUser as a string(JSON??)
+			
 			logger.info(username + " succesfully logged in: " + LocalDateTime.now());
-		} else {
+		} else {	// username or password was incorrect
 			logger.info("failed login with username: " + username);
-			RequestDispatcher rd = req.getRequestDispatcher("project1-loginfail.html");
-			rd.forward(req, res);
+			res.setContentType("application/json");
+			res.setStatus(204); 	// this is that no content status from loginscript
 		}
 	}
 }
