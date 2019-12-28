@@ -39,6 +39,7 @@
         } 
     </style>
 
+	<script src="scripts/loginscript.js"></script>
     <script>
     	function logout() {
     		let xhr = new XMLHttpRequest();
@@ -73,7 +74,7 @@
         <div class="panel">
             <div class="panel-body">
                 <span style="font-size: 2em;">Welcome</span>
-                <span id="displayname">Firstname Lastname</span>
+                <span style="font-size: 1.5em" id="displayname">Firstname Lastname</span>
                 
                 <span id="headerdate">
                     <script>document.write(new Date().toDateString());</script>
@@ -97,21 +98,21 @@
         <div id="newReimburse" class="collapse"
             style="border: rgb(230, 226, 226) 1.5px solid; background-color: whitesmoke;">
 
-            <form action="" style="border: 0;" enctype="multipart/form-data">
+            <form name="newReimbursementForm" onSubmit="submitReimbursement(event.preventDefault())" style="border: 0;" enctype="multipart/form-data">
                 <div class="row">
-                    <input type="text" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12">
-                    <select class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Select Type">
+                    <input type="text" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12" name ="amount">
+                    <select class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Select Type" name="type">
                         <option value="" disabled selected>Select Type</option>
                         <option value="1">Lodging</option>
                         <option value="2">Travel</option>
                         <option value="3">Food</option>
                         <option value="4">Other</option>
                     </select>
-                    <input type="file" name="" id="fileUpload" class="btn btn-info">
+                    <input type="file" name="" id="fileUpload" class="btn btn-info" name="file">
                     <input type="submit" class="btn btn-primary btn-lg">
                 </div>
                 <div class="row">
-                    <textarea name="" id="descriptBox" cols="30" rows="6" class="col-lg-4 col-sm-12"
+                    <textarea name="description" id="descriptBox" cols="30" rows="6" class="col-lg-4 col-sm-12"
                         placeholder="Enter a description..."></textarea>
                 </div>
             </form>
@@ -274,7 +275,8 @@
   		if(wholeUser != null) {
   			// implement individual user DOM manipulation here...
   			// display welcome user names
-  			displayname.innerHTML = wholeUser.firstName + wholeUser.lastName;
+  			displayname.innerHTML = wholeUser.firstName + " " + wholeUser.lastName;
+  			console.log(wholeUser);
   			// input reimbursement data
   			
   		}

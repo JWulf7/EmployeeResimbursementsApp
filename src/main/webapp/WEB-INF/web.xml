@@ -33,4 +33,14 @@
 		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>NewReimbursementServlet</servlet-name>
+		<servlet-class>com.revature.web.NewReimbursementServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>NewReimbursementServlet</servlet-name>
+		<url-pattern>/newReimbursement</url-pattern>
+	</servlet-mapping>
 </web-app>

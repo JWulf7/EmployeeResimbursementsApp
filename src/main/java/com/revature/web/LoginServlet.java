@@ -53,7 +53,8 @@ public class LoginServlet extends HttpServlet{
 		if(loggedUser != null) {
 			HttpSession session = req.getSession();		// gets current session or creates one if did not exist
 			// give the session a "username" attribute equal to username of uLogin object we created from the JSON
-			session.setAttribute("username", username);	
+			session.setAttribute("username", username);
+			session.setAttribute("userID", loggedUser.getUserId());
 			
 			// 
 			PrintWriter outputStream = res.getWriter(); // prints formatted representations of objects to a text output stream
