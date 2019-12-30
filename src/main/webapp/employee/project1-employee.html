@@ -40,6 +40,8 @@
     </style>
 
 	<script src="scripts/loginscript.js"></script>
+	<!-- <script src="scripts/newreimbursementscript.js"></script>	 -->
+	
     <script>
     	function logout() {
     		let xhr = new XMLHttpRequest();
@@ -51,6 +53,47 @@
     		// move the browser/window back to the <welcome> login page
     		window.location = "http://localhost:8080/Project1/";
     	}
+    </script>
+    
+    <script>
+    function submitReimbursement() {
+    	// grab the form
+    	console.log("started new reimbursement .js function")
+    	alert("started new reimbursement .js function")
+    	let form = document.newReimbursementForm;
+    	// get the values
+    	let amount = form.amount.value;
+    	let typeNum = form.typeNum.value;
+    	let description = form.description.value;
+    	// may want to comment out file until more investigation, we'll see...
+    	//let file = form.file.value;		
+    	
+    	// create temp js object to hold input
+    	let newReimbursementJSObject = {
+    			amount: amount,
+    			typeNum: typeNum,
+    			description: description,
+    			//file: file,
+    	}
+    	
+    	// instantiate xhr
+    	let xhr = new XMLHttpRequest();
+    	
+    	xhr.onreadystatechange = function() {
+    		if((this.readyState === 4) && (this.status === 201)) {
+    			alert("Reimbursement Submission Succesful")
+    			// refresh the page to show reimbursement submitted in the all reimbursements table??
+    			document.location.reload(true);
+    			
+    			
+    		} else if ((this.readyState === 4) && (this.status !== 201)) {
+    			alert("Reimbursement Submission Failed.")
+    		}
+    	};
+    	
+    	xhr.open("POST", "http://localhost:8080/Project1/newReimbursement");
+    	xhr.send(JSON.stringify(newReimbursementJSObject));
+    }
     </script>
 
 </head>
@@ -101,7 +144,7 @@
             <form name="newReimbursementForm" onSubmit="submitReimbursement(event.preventDefault())" style="border: 0;" enctype="multipart/form-data">
                 <div class="row">
                     <input type="text" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12" name ="amount">
-                    <select class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Select Type" name="type">
+                    <select class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Select Type" name="typeNum">
                         <option value="" disabled selected>Select Type</option>
                         <option value="1">Lodging</option>
                         <option value="2">Travel</option>

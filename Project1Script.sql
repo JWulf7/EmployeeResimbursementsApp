@@ -74,3 +74,5 @@ insert into users (userName, userPass, firstName, lastName, email, userRole)
 	values ('Manager', '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'Jonathan', 'Wulf', 'yadayada@yada.com', 2);
 insert into users (userName, userPass, firstName, lastName, email, userRole)
 	values ('Employee', '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'Larry', 'King', 'Larry@yada.com', 1);
+insert into users (userId, userName, userPass, firstName, lastName, email, userRole)
+	values (0, 'N/A', '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', 'Pending', 'Pending', 'email@email.com', 2);

@@ -1,10 +1,13 @@
 package com.revature.services;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.TreeMap;
 
 import com.revature.models.ReimStatus;
 import com.revature.models.ReimTypes;
 import com.revature.models.Reimbursement;
+import com.revature.models.ReimbursementInput;
 import com.revature.repositories.ReimbursementsDAO;
 import com.revature.repositories.ReimbursementsDAOImpl;
 import com.revature.repositories.UsersDAO;
@@ -15,6 +18,21 @@ public class ReimbursementLogic {
 	UsersDAO uDAO = new UsersDAOImpl();
 	ReimbursementsDAO rDAO = new ReimbursementsDAOImpl();
 	
+	public boolean createNewReimbursement(ReimbursementInput input, int author) {
+		System.out.println("started createNewReimbursement method");
+		Reimbursement newReimbursement = new Reimbursement(input);
+		System.out.println("Created new Reimbursement obj using ReimbursementInput as a parameter: new Reimbursement(input)");
+		newReimbursement.setAuthor(author);
+		System.out.println("about to check if newReimbursement isvalid");
+		if(isValidReimbursement(newReimbursement)) {
+			newReimbursement.setTimeSubmitted(createSumbmissionTime());
+		boolean success = rDAO.createReimbursement(newReimbursement);
+		return success;
+		} else {
+			return false;
+		}
+		
+	}
 	
 	
 	public ReimStatus statusToEnum(int statusNum) {
@@ -92,6 +110,21 @@ public class ReimbursementLogic {
 		return reimbursements;
 	}
 	
+	public String createSumbmissionTime() {
+		Date dateObj = new Date();
+		String dateFormat = "yyyy, MM-d    h:mm:ss";
+		SimpleDateFormat simpleDF = new SimpleDateFormat(dateFormat);
+		return simpleDF.toString();
+	}
 	
+	
+	public boolean isValidReimbursement(Reimbursement reimbursement) {
+		double amt = ((double)((int)(reimbursement.getAmount()*100)))/100;
+		if(amt >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }

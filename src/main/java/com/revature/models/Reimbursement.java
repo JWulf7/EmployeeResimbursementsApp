@@ -14,17 +14,17 @@ public class Reimbursement {
 	
 	private String timeResolved;
 	
-	private String descript;
+	private String description;
 	
 	private byte[] receipt;
 	
 	private int author;
 	
-	private int resolver;
+	private int resolver = 0;
 	
-	private ReimStatus status;
+	private ReimStatus status = ReimStatus.Pending;
 	
-	private int statusNum;
+	private int statusNum = 0;
 	
 	private ReimTypes type;
 	
@@ -37,14 +37,21 @@ public class Reimbursement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reimbursement(int reimId, double amount, String timeSubmitted, String timeResolved, String descript,
+	public Reimbursement(ReimbursementInput input) {
+		this.amount = input.getAmount();
+		this.description = input.getDescription();
+		//this.receipt = input.getReceipt();
+		//this.author = input.getAuthor();
+		this.typeNum = input.getTypeNum();
+	}
+	public Reimbursement(int reimId, double amount, String timeSubmitted, String timeResolved, String description,
 			byte[] receipt, int author, int resolver, int statusNum, int typeNum) {
 		super();
 		this.reimId = reimId;
 		this.amount = amount;
 		this.timeSubmitted = timeSubmitted;
 		this.timeResolved = timeResolved;
-		this.descript = descript;
+		this.description = description;
 		this.receipt = receipt;
 		this.author = author;
 		this.resolver = resolver;
@@ -102,12 +109,12 @@ public class Reimbursement {
 		this.timeResolved = timeResolved;
 	}
 
-	public String getDescript() {
-		return descript;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescript(String descript) {
-		this.descript = descript;
+	public void setDescript(String description) {
+		this.description = description;
 	}
 
 	public byte[] getReceipt() {
@@ -160,7 +167,7 @@ public class Reimbursement {
 		temp = Double.doubleToLongBits(amount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + author;
-		result = prime * result + ((descript == null) ? 0 : descript.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + Arrays.hashCode(receipt);
 		result = prime * result + reimId;
 		result = prime * result + resolver;
@@ -184,10 +191,10 @@ public class Reimbursement {
 			return false;
 		if (author != other.author)
 			return false;
-		if (descript == null) {
-			if (other.descript != null)
+		if (description == null) {
+			if (other.description != null)
 				return false;
-		} else if (!descript.equals(other.descript))
+		} else if (!description.equals(other.description))
 			return false;
 		if (!Arrays.equals(receipt, other.receipt))
 			return false;
@@ -215,7 +222,7 @@ public class Reimbursement {
 	@Override
 	public String toString() {
 		return "Reimbursement [reimId=" + reimId + ", amount=" + amount + ", timeSubmitted=" + timeSubmitted
-				+ ", timeResolved=" + timeResolved + ", descript=" + descript + ", receipt=" + Arrays.toString(receipt)
+				+ ", timeResolved=" + timeResolved + ", description=" + description + ", receipt=" + Arrays.toString(receipt)
 				+ ", author=" + author + ", resolver=" + resolver + ", status=" + status + ", type=" + type + "]";
 	}
 }
