@@ -114,7 +114,7 @@ public class ReimbursementLogic {
 		Date dateObj = new Date();
 		String dateFormat = "yyyy, MM-d    h:mm:ss";
 		SimpleDateFormat simpleDF = new SimpleDateFormat(dateFormat);
-		return simpleDF.toString();
+		return simpleDF.format(dateObj);
 	}
 	
 	

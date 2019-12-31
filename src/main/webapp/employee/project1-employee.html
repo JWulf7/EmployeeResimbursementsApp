@@ -83,7 +83,7 @@
     		if((this.readyState === 4) && (this.status === 201)) {
     			alert("Reimbursement Submission Succesful")
     			// refresh the page to show reimbursement submitted in the all reimbursements table??
-    			document.location.reload(true);
+    			//document.location.reload(true);  ~~ this causes me to have to submit twice for 1 to go through...
     			
     			
     		} else if ((this.readyState === 4) && (this.status !== 201)) {
@@ -321,6 +321,16 @@
   			displayname.innerHTML = wholeUser.firstName + " " + wholeUser.lastName;
   			console.log(wholeUser);
   			// input reimbursement data
+  			let reims = wholeUser.userReimbursements;
+  			console.log(reims);
+  			//reimbursementTable.append()
+  		//	reims.forEach((row) => {
+  		//		console.log(row);
+  		//	});
+  			//for(reims.keySet i : reims) {
+  				
+  		//	}
+  			
   			
   		}
   	}

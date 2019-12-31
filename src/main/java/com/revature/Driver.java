@@ -4,6 +4,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import com.revature.models.User;
 import com.revature.repositories.UsersDAOImpl;
+import com.revature.services.ReimbursementLogic;
 
 public class Driver {
 
@@ -17,6 +18,9 @@ public class Driver {
 		password = DigestUtils.sha256Hex(password);
 		System.out.println(password);
 
+		ReimbursementLogic rLogic = new ReimbursementLogic();
+		String time = rLogic.createSumbmissionTime();
+		System.out.println(time);
 	}
 
 }

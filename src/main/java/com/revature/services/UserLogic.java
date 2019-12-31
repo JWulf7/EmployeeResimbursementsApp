@@ -20,12 +20,13 @@ public class UserLogic {
 	ReimbursementsDAO rDAO = new ReimbursementsDAOImpl();
 	ReimbursementLogic rLogic = new ReimbursementLogic();
 
-	// grab a whole user to work with -- not complete yet
+	// grab a whole user to work with --
 	public User grabWholeUser(String userName, String password) {
 		User user = uDAO.getUserByUserName(userName);
 		if (user != null) {
 			if (user.getUserPassword().equals(password)) {
 				TreeMap<Integer, Reimbursement> reimbursements = rLogic.grabCompleteReimbursements(user.getUserId());
+				user.setUserReimbursements(reimbursements);
 				user.setRole(roleToEnum(user.getRoleNum()));
 				return user;
 			} else {
