@@ -127,4 +127,13 @@ public class ReimbursementLogic {
 		}
 	}
 	
+	public TreeMap<Integer, Reimbursement> grabAllCompleteReimbursements() {
+		TreeMap<Integer, Reimbursement> allReimbursements = rDAO.getAllReimbursements();
+		for(int i = 1; i <= allReimbursements.size(); i++) {
+			allReimbursements.get(i).setStatus(statusToEnum(allReimbursements.get(i).getStatusNum()));
+			allReimbursements.get(i).setType(typeToEnum(allReimbursements.get(i).getTypeNum()));
+		}
+		return allReimbursements;
+	}
+	
 }

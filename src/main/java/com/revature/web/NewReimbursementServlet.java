@@ -26,7 +26,8 @@ public class NewReimbursementServlet extends HttpServlet{
 	
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) {
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
+		throws ServletException, IOException {
 		try {
 			doPost(req, res);
 		} catch (ServletException | IOException e) {

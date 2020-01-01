@@ -38,18 +38,29 @@
              
         } 
     </style>
-
+	<script>
+    	function logout() {
+    		let xhr = new XMLHttpRequest();
+    		
+    		xhr.open("POST", "http://localhost:8080/Project1/logout");	// maps to logout servlet
+    		xhr.send();
+    		//end current session that we set in loginscript.js
+    		sessionStorage.removeItem('currentUser'); 
+    		// move the browser/window back to the <welcome> login page
+    		window.location = "http://localhost:8080/Project1/";
+    	}
+    </script>
     
 
 </head>
 
-<body>
+<body onload="getReimbursements()">
     <div class="container">
         
         <div class="jumbotron" style="background-color: rgb(255, 145, 0); font-family: 'Ubuntu', sans-serif;">
             <div class="container">
             <!--    <a href="project1-login.html" style="position: absolute; right: 10%; top: .7em; border: rgb(255, 255, 255) 1.5px solid; background-color: rgb(165, 163, 159); border-radius: 7px 7px 7px;">Logout</a> -->
-            <a href="project1-login.html" id="logout" class="btn btn-secondary btn-sm" style="position: absolute; right: 10%; top: .7em; background-color: rgb(91, 91, 190);">Logout</a>
+            <button onclick="logout()"  id="logout" class="btn btn-secondary btn-sm" style="position: absolute; right: 10%; top: .7em; background-color: rgb(91, 91, 190);">Logout</button>
            
             </div>
             
@@ -62,7 +73,7 @@
         <div class="panel">
             <div class="panel-body">
                 <span style="font-size: 2em;">Welcome</span>
-                <span>Firstname Lastname</span>
+                <span id="displayname">Firstname Lastname</span>
                 
                 <span id="headerdate">
                     <script>document.write(new Date().toDateString());</script>
@@ -86,10 +97,10 @@
         <div id="approveDeny" class="collapse"
             style="border: rgb(230, 226, 226) 1.5px solid; background-color: whitesmoke;">
 
-            <form action="" style="border: 0;" enctype="multipart/form-data">
+            <form name="setReimbursementStatusForm" onSubmit="submitReimbursementStatus(event.preventDefault())" style="border: 0;" enctype="multipart/form-data">
                 <div class="row">
                     <input type="text" placeholder="Enter Reimbursement ID number" class="col-lg-3 col-md-3 col-xs-12">
-                    <select class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Select Type">
+                    <select class="form-control col-lg-3 col-md-3 col-xs-12" name="statusNum">
                         <option value="" disabled selected>Pending</option>
                         <option value="1">Approve</option>
                         <option value="-1">Deny</option>
@@ -122,8 +133,8 @@
                 </tr>
                
             </thead>
-            <tbody id="ReimbursementTable">
-               <tr>
+            <tbody id="AllReimbursementsTable">
+               <!--  <tr>
                    <td>0001</td>
                    <td>12/24/2019</td>
                    <td>$82.15</td>
@@ -183,7 +194,7 @@
                 <td>12/29/2019</td>
                 <td>reciept-0005.png</td>
             </tr>
-
+-->
             </tbody>
 
         </table>
@@ -256,6 +267,65 @@
       }
     }
     </script>
+    
+     <!-- USER LOGIN NAME DISPLAY 'displayname' -->
+  <script>
+  	let displayname = document.getElementById('displayname');
+  	let reimbursementTable = document.getElementById('AllReimbursementsTable');
+  	//let reimTable = document.getElementById('reimTable');
+  	// grab the user object associated with the session
+  	let userString = sessionStorage.getItem('currentUser');
+  	let allReimbursementsString = sessionStorage.getItem('allReimbursements');
+  	// make sure not empty, 
+  	console.log(allReimbursementsString);
+  	if(userString === null) {
+  		window.location = "http://localhost:8080/Project1/"; // redirect back to the initial html 
+  	} else {
+  		let wholeUser = JSON.parse(userString);
+  		if(wholeUser != null) {
+  			// implement individual user DOM manipulation here...
+  			// display welcome user names
+  			displayname.innerHTML = wholeUser.firstName + " " + wholeUser.lastName;
+  			console.log(wholeUser);
+  			// input reimbursement data
+  			let allReimbursements = JSON.parse(allReimbursementsString);
+  			console.log(allReimbursements);
+  		
+  			for(key in allReimbursements) {
+  				var tr = document.createElement('tr');
+  				tr.innerHTML = '<td>' + allReimbursements[key].reimId + '</td>' +
+  				'<td>' + allReimbursements[key].timeSubmitted + '</td>' +
+  				'<td>' + allReimbursements[key].amount + '</td>' +
+  				'<td>' + allReimbursements[key].type + '</td>' +
+  				'<td>' + allReimbursements[key].description + '</td>' +
+  				'<td>' + allReimbursements[key].status + '</td>' +
+  				'<td>' + allReimbursements[key].author + '</td>' +
+  				'<td>' + allReimbursements[key].resolver + '</td>' +
+  				'<td>' + allReimbursements[key].timeResolved + '</td>';
+  				'<td>' + 'receipt here' + '</td>' +
+  				AllReimbursementsTable.appendChild(tr);
+  			};
+  			
+  			
+  		}
+  	}
+  </script>
+  <script>
+  	function getReimbursements() {
+  		console.log("running getReimbursements script");
+  		let xhr = new XMLHttpRequest();
+  		xhr.onreadystatechange = function() {
+  			if((this.readyState === 4) && (this.status === 200)) {
+  				console.log("in getReimbursements(), inside 'if' conditional, true");
+  				sessionStorage.setItem('allReimbursements', this.responseText);
+  			} else {
+  				console.log("in getReimbursements(), inside 'if' conditional, false");
+  			}
+  		}
+  		xhr.open("GET", "http://localhost:8080/Project1/allReimbursements");
+  		xhr.send();
+  	}
+  </script>
 </body>
 
 </html>

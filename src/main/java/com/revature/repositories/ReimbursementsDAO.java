@@ -13,6 +13,8 @@ public interface ReimbursementsDAO {
 	
 	public TreeMap<Integer, Reimbursement> getReimbursementsFromStatus (int statusNum);
 	
+	public TreeMap<Integer, Reimbursement> getAllReimbursements();
+	
 	public Reimbursement getReimbursementFromReimId (int id);
 	
 	public boolean updateReimbursement (Reimbursement reimbursement);

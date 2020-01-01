@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
 import com.revature.models.UserLogin;
+import com.revature.models.UserRoles;
 import com.revature.services.UserLogic;
 
 public class LoginServlet extends HttpServlet{
@@ -50,7 +51,7 @@ public class LoginServlet extends HttpServlet{
 		User loggedUser = uLogic.login(username, passwordB4);  // checks if user/password is correct and returns whole user object
 		
 		
-		if(loggedUser != null) {
+		if((loggedUser != null) && (loggedUser.getRole() == UserRoles.Employee)) {	// this is where I should check if user is a financial manager
 			HttpSession session = req.getSession();		// gets current session or creates one if did not exist
 			// give the session a "username" attribute equal to username of uLogin object we created from the JSON
 			session.setAttribute("username", username);
@@ -59,10 +60,19 @@ public class LoginServlet extends HttpServlet{
 			// 
 			PrintWriter outputStream = res.getWriter(); // prints formatted representations of objects to a text output stream
 			res.setContentType("application/json"); 	// creating the response, and setting the type to JSON
+			res.setStatus(200);
 			outputStream.println(om.writeValueAsString(loggedUser));	// the response writer, PrintWriter outStream, prints the values of loggedUser as a string(JSON??)
 			
 			logger.info(username + " succesfully logged in: " + LocalDateTime.now());
-		} else {	// username or password was incorrect
+		} else if((loggedUser != null) && (loggedUser.getRole() == UserRoles.FinanceManager)) {
+			HttpSession session = req.getSession();
+			session.setAttribute("username", username);
+			session.setAttribute("userID", loggedUser.getUserId());
+			PrintWriter outputStream = res.getWriter();
+			res.setContentType("application/json");
+			res.setStatus(418);
+			outputStream.println(om.writeValueAsString(loggedUser));
+		}else {	// username or password was incorrect
 			logger.info("failed login with username: " + username);
 			res.setContentType("application/json");
 			res.setStatus(204); 	// this is that no content status from loginscript

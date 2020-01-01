@@ -92,6 +92,44 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 		}
 		return statusReimbursements;
 	}
+	public TreeMap<Integer, Reimbursement> getAllReimbursements() {
+
+		TreeMap<Integer, Reimbursement> allReimbursements = new TreeMap<>();
+		try (Connection conn = ConnectionUtil.getConnection()) {
+
+			String sql = "SELECT * FROM project1.reimbursements;";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+
+			ResultSet rs = stmt.executeQuery();
+			int i = 1;
+			while (rs.next()) {
+				int reimId = rs.getInt("reimbursementid");
+				double amount = rs.getDouble("amount");
+				String timeSubmitted = rs.getString("timesubmitted");
+				String timeResolved = rs.getString("timeresolved");
+				String descript = rs.getString("discription");
+				byte[] receipt = rs.getBytes("receipt");
+				int author = rs.getInt("author");
+				int resolver = rs.getInt("resolver");
+				int statusNum = rs.getInt("status");
+				int typeNum = rs.getInt("reimtype");
+
+				Reimbursement reimbursement = new Reimbursement(reimId, amount, timeSubmitted, timeResolved, descript,
+						receipt, author, resolver, statusNum, typeNum);
+				allReimbursements.put(i, reimbursement);
+				i++;
+
+			}
+			rs.close();
+
+		} catch (SQLException e) {
+			logger.warn("Unable to get Reimbursements from Status", e);
+			e.printStackTrace();
+		}
+		return allReimbursements;
+	}
+	
 
 	public Reimbursement getReimbursementFromReimId(int id) {
 		// TODO Auto-generated method stub

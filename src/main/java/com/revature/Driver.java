@@ -24,7 +24,8 @@ public class Driver {
 		System.out.println(time);
 		
 		ReimbursementsDAOImpl rDAO = new ReimbursementsDAOImpl();
-		System.out.println(rDAO.getReimbursementsFromUserId(2));
+		//System.out.println(rDAO.getReimbursementsFromUserId(2));
+		System.out.println(rLogic.grabAllCompleteReimbursements());
 	}
 
 }
