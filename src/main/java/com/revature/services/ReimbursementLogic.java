@@ -112,7 +112,7 @@ public class ReimbursementLogic {
 	
 	public String createSumbmissionTime() {
 		Date dateObj = new Date();
-		String dateFormat = "yyyy, MM-d    h:mm:ss";
+		String dateFormat = "yyyy-MM-d    h:mm:ss";
 		SimpleDateFormat simpleDF = new SimpleDateFormat(dateFormat);
 		return simpleDF.format(dateObj);
 	}

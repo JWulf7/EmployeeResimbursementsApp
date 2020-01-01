@@ -181,7 +181,7 @@
                
             </thead>
             <tbody id="ReimbursementTable">
-               <tr>
+          <!--     <tr>
                    <td>0001</td>
                    <td>12/24/2019</td>
                    <td>$82.15</td>
@@ -230,7 +230,7 @@
                 <td>Denied</td>
                 <td>Jim Halpert</td>
                 <td>12/29/2019</td>
-            </tr>
+            </tr>		 --> 
 
             </tbody>
 
@@ -308,6 +308,7 @@
   <script>
   	let displayname = document.getElementById('displayname');
   	let reimbursementTable = document.getElementById('ReimbursementTable');
+  	let reimTable = document.getElementById('reimTable');
   	// grab the user object associated with the session
   	let userString = sessionStorage.getItem('currentUser');
   	// make sure not empty, 
@@ -330,6 +331,19 @@
   			//for(reims.keySet i : reims) {
   				
   		//	}
+  			//Object.keys(reims).forEach(function(object) {
+  			for(key in reims) {
+  				var tr = document.createElement('tr');
+  				tr.innerHTML = '<td>' + reims[key].reimId + '</td>' +
+  				'<td>' + reims[key].timeSubmitted + '</td>' +
+  				'<td>' + reims[key].amount + '</td>' +
+  				'<td>' + reims[key].type + '</td>' +
+  				'<td>' + reims[key].description + '</td>' +
+  				'<td>' + reims[key].status + '</td>' +
+  				'<td>' + reims[key].resolver + '</td>' +
+  				'<td>' + reims[key].timeResolved + '</td>';
+  				reimbursementTable.appendChild(tr);
+  			};
   			
   			
   		}

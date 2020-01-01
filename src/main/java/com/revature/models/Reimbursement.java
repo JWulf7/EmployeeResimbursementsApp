@@ -55,8 +55,8 @@ public class Reimbursement {
 		this.receipt = receipt;
 		this.author = author;
 		this.resolver = resolver;
-		this.status = status;
-		this.type = type;
+		this.statusNum = statusNum;
+		this.typeNum = typeNum;
 	}
 	
 	// getters and setters

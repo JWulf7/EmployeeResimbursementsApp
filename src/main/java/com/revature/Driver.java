@@ -3,6 +3,7 @@ package com.revature;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import com.revature.models.User;
+import com.revature.repositories.ReimbursementsDAOImpl;
 import com.revature.repositories.UsersDAOImpl;
 import com.revature.services.ReimbursementLogic;
 
@@ -21,6 +22,9 @@ public class Driver {
 		ReimbursementLogic rLogic = new ReimbursementLogic();
 		String time = rLogic.createSumbmissionTime();
 		System.out.println(time);
+		
+		ReimbursementsDAOImpl rDAO = new ReimbursementsDAOImpl();
+		System.out.println(rDAO.getReimbursementsFromUserId(2));
 	}
 
 }
