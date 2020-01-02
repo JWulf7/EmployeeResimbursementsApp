@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
@@ -22,7 +23,8 @@ import com.revature.services.UserLogic;
 
 public class LoginServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	private static Logger logger = Logger.getLogger(LoginServlet.class);
+	private static Logger logger = LogManager.getLogger(LoginServlet.class);
+	//private static Logger logger = Logger.getLogger(LoginServlet.class);
 	UserLogic uLogic = new UserLogic();
 	//instantiate ObjectMapper ~~ provides functionality for reading and writing JSON
 	private static ObjectMapper om = new ObjectMapper();

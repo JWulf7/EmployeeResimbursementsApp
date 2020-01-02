@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Reimbursement;
@@ -18,7 +19,8 @@ import com.revature.services.ReimbursementLogic;
 public class AllReimbursementsServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 634005650525646592L;
-	private static Logger logger = Logger.getLogger(AllReimbursementsServlet.class);
+	private static final Logger logger = LogManager.getLogger(AllReimbursementsServlet.class);
+	//private static Logger logger = Logger.getLogger(AllReimbursementsServlet.class);
 	
 	ReimbursementLogic rLogic = new ReimbursementLogic();
 	

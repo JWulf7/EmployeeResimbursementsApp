@@ -5,14 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.revature.models.User;
 import com.revature.util.ConnectionUtil;
+import com.revature.web.LoginServlet;
 
 public class UsersDAOImpl implements UsersDAO {
 
-	private static Logger logger = Logger.getLogger(UsersDAOImpl.class);
+	//private static Logger logger = Logger.getLogger(UsersDAOImpl.class);
+	private static final Logger logger = LogManager.getLogger(UsersDAOImpl.class);
 	
 	public User getUserByUserName(String userName) {
 

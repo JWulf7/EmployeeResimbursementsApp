@@ -8,15 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class LogoutServlet extends HttpServlet{
 
 	
 	private static final long serialVersionUID = -7596501926087719933L;
 	
-	private static final Logger logger = Logger.getLogger(LogoutServlet.class);
-
+	//private static final Logger logger = Logger.getLogger(LogoutServlet.class);
+	private static final Logger logger = LogManager.getLogger(LogoutServlet.class);
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 			HttpSession session = req.getSession(false);
