@@ -54,10 +54,8 @@
     
 
 </head>
-<script>
-	getReimbursements();
-</script>
-<body onload="getReimbursements()">
+
+<body >
     <div class="container">
         
         <div class="jumbotron" style="background-color: rgb(255, 145, 0); font-family: 'Ubuntu', sans-serif;">
@@ -118,7 +116,7 @@
     <div class="container prior">
     <hr><br><br>
         <h2>All Reimbursements</h2>
-        <a href="#reimTable" class="btn btn-primary" data-toggle="collapse">View All</a>
+        <a href="#reimTable" class="btn btn-primary" data-toggle="collapse" onclick="getReimbursements()">View All</a>
         <table class="table table-hover table-striped collapse" id="reimTable">
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search or empty for all...">
             <thead>
@@ -346,7 +344,9 @@
   			if((this.readyState === 4) && (this.status === 200)) {
   				alert("Status was succesfully changed");
   				//TRY TO UPDATE THE PAGE AFTER... potentially save the first <script> as a function, run the script in it's own script, and rerun that script here too...?
-  			} else {
+  				window.location = "http://localhost:8080/Project1/manager/project1-manager.html";
+  			} 
+  			if((this.readyState === 4) && (this.status != 200))  {
   				alert("Unable to update status.")
   			}
   		}

@@ -46,11 +46,12 @@
     	function logout() {
     		let xhr = new XMLHttpRequest();
     		
+    		sessionStorage.removeItem('currentUser'); 
+    		sessionStorage.clear();
     		xhr.open("POST", "http://localhost:8080/Project1/logout");	// maps to logout servlet
     		xhr.send();
     		//end current session that we set in loginscript.js
-    		sessionStorage.removeItem('currentUser'); 
-    		sessionStorage.clear();
+    		
     		// move the browser/window back to the <welcome> login page
     		window.location = "http://localhost:8080/Project1/";
     	}

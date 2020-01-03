@@ -113,7 +113,7 @@ public class ReimbursementLogic {
 	
 	public String createSubmissionTime() {
 		Date dateObj = new Date();
-		String dateFormat = "yyyy-MM-d    h:mm:ss";
+		String dateFormat = "yyyy-MM-d    h:mm:ss a";
 		SimpleDateFormat simpleDF = new SimpleDateFormat(dateFormat);
 		return simpleDF.format(dateObj);
 	}
