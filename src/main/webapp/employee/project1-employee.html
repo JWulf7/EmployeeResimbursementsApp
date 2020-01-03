@@ -50,6 +50,7 @@
     		xhr.send();
     		//end current session that we set in loginscript.js
     		sessionStorage.removeItem('currentUser'); 
+    		sessionStorage.clear();
     		// move the browser/window back to the <welcome> login page
     		window.location = "http://localhost:8080/Project1/";
     	}
@@ -90,9 +91,15 @@
     	};
     	
     	xhr.open("POST", "http://localhost:8080/Project1/newReimbursement");
-    	xhr.send(JSON.stringify(newReimbursementJSObject));
+    	xhr.send();		/*JSON.stringify(newReimbursementJSObject)*/
     }
     </script>
+	<script>
+		function submitNew() {
+			console.log("in submitNew function");
+			window.location = "http://localhost:8080/Project1/employee/project1-employee.html";
+		}
+	</script>
 
 </head>
 
@@ -139,7 +146,9 @@
         <div id="newReimburse" class="collapse"
             style="border: rgb(230, 226, 226) 1.5px solid; background-color: whitesmoke;">
 
-            <form name="newReimbursementForm" onSubmit="submitReimbursement(event.preventDefault())" style="border: 0;" enctype="multipart/form-data">
+
+			<!-- onSubmit="submitReimbursement(event.preventDefault())" -->
+            <form method="post" action="http://localhost:8080/Project1/newReimbursement"  name="newReimbursementForm"  style="border: 0;" enctype="multipart/form-data">
                 <div class="row">
                     <input type="text" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12" name ="amount">
                     <select class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Select Type" name="typeNum">
@@ -149,8 +158,8 @@
                         <option value="3">Food</option>
                         <option value="4">Other</option>
                     </select>
-                    <input type="file" name="" id="fileUpload" class="btn btn-info" name="file">
-                    <input type="submit" class="btn btn-primary btn-lg">
+                    <input type="file"  id="fileUpload" class="btn btn-info" name="filename">
+                    <input type="submit" class="btn btn-primary btn-lg" onsubmit="submitNew(event.preventDefault())">
                 </div>
                 <div class="row">
                     <textarea name="description" id="descriptBox" cols="30" rows="6" class="col-lg-4 col-sm-12"

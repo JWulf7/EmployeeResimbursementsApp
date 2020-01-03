@@ -53,4 +53,14 @@
 		<servlet-name>AllReimbursementsServlet</servlet-name>
 		<url-pattern>/allReimbursements</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UpdateReimbursementStatusServlet</servlet-name>
+		<servlet-class>com.revature.web.UpdateReimbursementStatusServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>UpdateReimbursementStatusServlet</servlet-name>
+		<url-pattern>/updateStatus</url-pattern>
+	</servlet-mapping>
 </web-app>

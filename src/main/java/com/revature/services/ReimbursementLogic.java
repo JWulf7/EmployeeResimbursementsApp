@@ -18,14 +18,15 @@ public class ReimbursementLogic {
 	UsersDAO uDAO = new UsersDAOImpl();
 	ReimbursementsDAO rDAO = new ReimbursementsDAOImpl();
 	
-	public boolean createNewReimbursement(ReimbursementInput input, int author) {
+	public boolean createNewReimbursement(ReimbursementInput input, int author, byte[] file) {
 		System.out.println("started createNewReimbursement method");
 		Reimbursement newReimbursement = new Reimbursement(input);
 		System.out.println("Created new Reimbursement obj using ReimbursementInput as a parameter: new Reimbursement(input)");
 		newReimbursement.setAuthor(author);
+		newReimbursement.setReceipt(file);
 		System.out.println("about to check if newReimbursement isvalid");
 		if(isValidReimbursement(newReimbursement)) {
-			newReimbursement.setTimeSubmitted(createSumbmissionTime());
+			newReimbursement.setTimeSubmitted(createSubmissionTime());
 		boolean success = rDAO.createReimbursement(newReimbursement);
 		return success;
 		} else {
@@ -110,7 +111,7 @@ public class ReimbursementLogic {
 		return reimbursements;
 	}
 	
-	public String createSumbmissionTime() {
+	public String createSubmissionTime() {
 		Date dateObj = new Date();
 		String dateFormat = "yyyy-MM-d    h:mm:ss";
 		SimpleDateFormat simpleDF = new SimpleDateFormat(dateFormat);
@@ -134,6 +135,18 @@ public class ReimbursementLogic {
 			allReimbursements.get(i).setType(typeToEnum(allReimbursements.get(i).getTypeNum()));
 		}
 		return allReimbursements;
+	}
+	
+	public boolean updateStatus(int reimID, int newStatus, int resolver) {
+		Reimbursement reimbursement = rDAO.getReimbursementFromReimId(reimID);
+		reimbursement.setStatusNum(newStatus);
+		reimbursement.setTimeResolved(createSubmissionTime());
+		reimbursement.setResolver(resolver);
+		if(rDAO.updateReimbursementStatus(reimbursement)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 }

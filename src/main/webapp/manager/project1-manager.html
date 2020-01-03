@@ -46,6 +46,7 @@
     		xhr.send();
     		//end current session that we set in loginscript.js
     		sessionStorage.removeItem('currentUser'); 
+    		sessionStorage.clear();
     		// move the browser/window back to the <welcome> login page
     		window.location = "http://localhost:8080/Project1/";
     	}
@@ -53,7 +54,9 @@
     
 
 </head>
-
+<script>
+	getReimbursements();
+</script>
 <body onload="getReimbursements()">
     <div class="container">
         
@@ -97,9 +100,9 @@
         <div id="approveDeny" class="collapse"
             style="border: rgb(230, 226, 226) 1.5px solid; background-color: whitesmoke;">
 
-            <form name="setReimbursementStatusForm" onSubmit="submitReimbursementStatus(event.preventDefault())" style="border: 0;" enctype="multipart/form-data">
+            <form name="setReimbursementStatusForm" onSubmit="updateStatus(event.preventDefault())" style="border: 0;" enctype="multipart/form-data">
                 <div class="row">
-                    <input type="text" placeholder="Enter Reimbursement ID number" class="col-lg-3 col-md-3 col-xs-12">
+                    <input name ="reimID" type="text" placeholder="Enter Reimbursement ID number" class="col-lg-3 col-md-3 col-xs-12">
                     <select class="form-control col-lg-3 col-md-3 col-xs-12" name="statusNum">
                         <option value="" disabled selected>Pending</option>
                         <option value="1">Approve</option>
@@ -318,12 +321,37 @@
   			if((this.readyState === 4) && (this.status === 200)) {
   				console.log("in getReimbursements(), inside 'if' conditional, true");
   				sessionStorage.setItem('allReimbursements', this.responseText);
-  			} else {
+  			} 
+  			/* else {
   				console.log("in getReimbursements(), inside 'if' conditional, false");
-  			}
+  			} */
   		}
   		xhr.open("GET", "http://localhost:8080/Project1/allReimbursements");
   		xhr.send();
+  	}
+  </script>
+  
+  <script>
+  	function updateStatus() {
+  		console.log("running updateStatus script");
+  		let statusForm = document.setReimbursementStatusForm;
+  		let reimID = statusForm.reimID.value;
+  		let statusNum = statusForm.statusNum.value;
+  		let statusUpdateObject = {
+  				reimID: reimID,
+  				statusNum: statusNum,
+  		}
+  		let xhr = new XMLHttpRequest();
+  		xhr.onreadystatechange = function() {
+  			if((this.readyState === 4) && (this.status === 200)) {
+  				alert("Status was succesfully changed");
+  				//TRY TO UPDATE THE PAGE AFTER... potentially save the first <script> as a function, run the script in it's own script, and rerun that script here too...?
+  			} else {
+  				alert("Unable to update status.")
+  			}
+  		}
+  		xhr.open("POST", "http://localhost:8080/Project1/updateStatus");
+  		xhr.send(JSON.stringify(statusUpdateObject));
   	}
   </script>
 </body>

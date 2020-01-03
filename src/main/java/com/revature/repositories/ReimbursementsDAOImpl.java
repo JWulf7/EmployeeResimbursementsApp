@@ -135,7 +135,36 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 	
 
 	public Reimbursement getReimbursementFromReimId(int id) {
-		// TODO Auto-generated method stub
+		
+		try (Connection conn = ConnectionUtil.getConnection()) {
+
+			String sql = "SELECT * FROM project1.reimbursements WHERE reimbursementid = ?;";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int reimId = rs.getInt("reimbursementid");
+				double amount = rs.getDouble("amount");
+				String timeSubmitted = rs.getString("timesubmitted");
+				String timeResolved = rs.getString("timeresolved");
+				String descript = rs.getString("discription");
+				byte[] receipt = rs.getBytes("receipt");
+				int author = rs.getInt("author");
+				int resolver = rs.getInt("resolver");
+				int statusNum = rs.getInt("status");
+				int typeNum = rs.getInt("reimtype");
+
+				Reimbursement reimbursement = new Reimbursement(reimId, amount, timeSubmitted, timeResolved, descript,
+						receipt, author, resolver, statusNum, typeNum);
+				return reimbursement;
+			}
+			rs.close();
+
+		} catch (SQLException e) {
+			logger.warn("Unable to get Reimbursements from ReimbursementID", e);
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -166,23 +195,46 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 		return false;
 	}
 
+	public boolean updateReimbursementStatus(Reimbursement reimbursement) {
+		try (Connection conn = ConnectionUtil.getConnection()) {
+
+			String sql = "UPDATE project1.reimbursements SET status = ?, timeresolved = ? WHERE reimbursementid = ?;";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, reimbursement.getStatusNum());
+			stmt.setString(2, reimbursement.getTimeResolved());
+			stmt.setInt(3, reimbursement.getReimId());
+			
+			boolean check = stmt.execute();
+			if (check == false) {
+			logger.info("Reimbursement No." + reimbursement.getReimId() + " status was changed to: " + reimbursement.getStatus());	
+				return true;
+			}
+
+		} catch (SQLException e) {
+			logger.warn("Unable to update reimbursement status", e);
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public boolean createReimbursement(Reimbursement reimbursement) {
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
 
-			String sql = "INSERT into project1.reimbursements (amount, timeSubmitted, timeResolved, discription, author, resolver, status, reimType) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+			String sql = "INSERT into project1.reimbursements (amount, timeSubmitted, timeResolved, discription, author, resolver, status, reimType, receipt) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setDouble(1, reimbursement.getAmount());
 			stmt.setString(2, reimbursement.getTimeSubmitted());
 			stmt.setString(3, reimbursement.getTimeResolved());
 			stmt.setString(4, reimbursement.getDescription());
-			//stmt.setBytes(5, reimbursement.getReceipt());
 			stmt.setInt(5, reimbursement.getAuthor());
 			stmt.setInt(6, reimbursement.getResolver());
 			stmt.setInt(7, reimbursement.getStatusNum());
 			stmt.setInt(8, reimbursement.getTypeNum());
+			stmt.setBytes(9, reimbursement.getReceipt());
 
+			
 			boolean check = stmt.execute();
 			if (check == false) {
 				return true;

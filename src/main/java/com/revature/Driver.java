@@ -20,7 +20,7 @@ public class Driver {
 		System.out.println(password);
 
 		ReimbursementLogic rLogic = new ReimbursementLogic();
-		String time = rLogic.createSumbmissionTime();
+		String time = rLogic.createSubmissionTime();
 		System.out.println(time);
 		
 		ReimbursementsDAOImpl rDAO = new ReimbursementsDAOImpl();

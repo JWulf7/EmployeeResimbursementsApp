@@ -19,5 +19,7 @@ public interface ReimbursementsDAO {
 	
 	public boolean updateReimbursement (Reimbursement reimbursement);
 	
+	public boolean updateReimbursementStatus (Reimbursement reimbursement);
+	
 	public boolean createReimbursement (Reimbursement reimbursement);
 }
