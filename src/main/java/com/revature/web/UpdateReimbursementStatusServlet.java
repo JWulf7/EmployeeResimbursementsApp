@@ -45,8 +45,7 @@ public class UpdateReimbursementStatusServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 		int userID = (int) session.getAttribute("userID");
 		System.out.println(userID);
-		System.out.println(session.getAttributeNames());
-		System.out.println(session.getValueNames());
+		
 		
 		BufferedReader reader = req.getReader();
 		StringBuilder jsonInput = new StringBuilder();

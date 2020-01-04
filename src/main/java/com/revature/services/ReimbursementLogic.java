@@ -142,6 +142,7 @@ public class ReimbursementLogic {
 		reimbursement.setStatusNum(newStatus);
 		reimbursement.setTimeResolved(createSubmissionTime());
 		reimbursement.setResolver(resolver);
+		System.out.println(reimbursement);
 		if(rDAO.updateReimbursementStatus(reimbursement)) {
 			return true;
 		} else {

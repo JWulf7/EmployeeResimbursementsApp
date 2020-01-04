@@ -45,6 +45,13 @@ public class AllReimbursementsServlet extends HttpServlet{
 		res.setStatus(200);
 		System.out.println("inside the doGet method of AllReimbursementsServlet");
 		TreeMap<Integer, Reimbursement> allReimbursements = rLogic.grabAllCompleteReimbursements();
+		for(int i=1; i<allReimbursements.size();i++) {
+			allReimbursements.get(i).setReceipt(null);
+			/*
+			 * MAY NEED TO DELETE THE LINE ABOVE THIS IF IT SOMEHOW PERSISTS TO THE DATABASE... BUT JUST GETTING RID OF RECEIPTS 
+			 * TO MINIMIZE SIZE FOR TRANSFER TO FRONT END
+			 */
+		}
 		outputStream.println(om.writeValueAsString(allReimbursements));
 	}
 	

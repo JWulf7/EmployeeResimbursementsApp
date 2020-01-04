@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     
     <title>ERS Manager</title>
-    
+    <script src="../scripts/loginscript.js"></script>
     <style>
         body {
             font-family: 'Ubuntu', sans-serif;
@@ -45,7 +45,7 @@
     		xhr.open("POST", "http://localhost:8080/Project1/logout");	// maps to logout servlet
     		xhr.send();
     		//end current session that we set in loginscript.js
-    		sessionStorage.removeItem('currentUser'); 
+    		//sessionStorage.removeItem('currentUser'); 
     		sessionStorage.clear();
     		// move the browser/window back to the <welcome> login page
     		window.location = "http://localhost:8080/Project1/";
@@ -116,7 +116,7 @@
     <div class="container prior">
     <hr><br><br>
         <h2>All Reimbursements</h2>
-        <a href="#reimTable" class="btn btn-primary" data-toggle="collapse" onclick="getReimbursements()">View All</a>
+        <a href="#reimTable" class="btn btn-primary" data-toggle="collapse" >View All</a>
         <table class="table table-hover table-striped collapse" id="reimTable">
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search or empty for all...">
             <thead>
@@ -268,51 +268,8 @@
       }
     }
     </script>
-    
-     <!-- USER LOGIN NAME DISPLAY 'displayname' -->
-  <script>
-  	let displayname = document.getElementById('displayname');
-  	let reimbursementTable = document.getElementById('AllReimbursementsTable');
-  	//let reimTable = document.getElementById('reimTable');
-  	// grab the user object associated with the session
-  	let userString = sessionStorage.getItem('currentUser');
-  	let allReimbursementsString = sessionStorage.getItem('allReimbursements');
-  	// make sure not empty, 
-  	console.log(allReimbursementsString);
-  	if(userString === null) {
-  		window.location = "http://localhost:8080/Project1/"; // redirect back to the initial html 
-  	} else {
-  		let wholeUser = JSON.parse(userString);
-  		if(wholeUser != null) {
-  			// implement individual user DOM manipulation here...
-  			// display welcome user names
-  			displayname.innerHTML = wholeUser.firstName + " " + wholeUser.lastName;
-  			console.log(wholeUser);
-  			// input reimbursement data
-  			let allReimbursements = JSON.parse(allReimbursementsString);
-  			console.log(allReimbursements);
-  		
-  			for(key in allReimbursements) {
-  				var tr = document.createElement('tr');
-  				tr.innerHTML = '<td>' + allReimbursements[key].reimId + '</td>' +
-  				'<td>' + allReimbursements[key].timeSubmitted + '</td>' +
-  				'<td>' + allReimbursements[key].amount + '</td>' +
-  				'<td>' + allReimbursements[key].type + '</td>' +
-  				'<td>' + allReimbursements[key].description + '</td>' +
-  				'<td>' + allReimbursements[key].status + '</td>' +
-  				'<td>' + allReimbursements[key].author + '</td>' +
-  				'<td>' + allReimbursements[key].resolver + '</td>' +
-  				'<td>' + allReimbursements[key].timeResolved + '</td>';
-  				'<td>' + 'receipt here' + '</td>' +
-  				AllReimbursementsTable.appendChild(tr);
-  			};
-  			
-  			
-  		}
-  	}
-  </script>
-  <script>
-  	function getReimbursements() {
+     <script>
+  /*	function getReimbursements() {
   		console.log("running getReimbursements script");
   		let xhr = new XMLHttpRequest();
   		xhr.onreadystatechange = function() {
@@ -320,14 +277,64 @@
   				console.log("in getReimbursements(), inside 'if' conditional, true");
   				sessionStorage.setItem('allReimbursements', this.responseText);
   			} 
-  			/* else {
-  				console.log("in getReimbursements(), inside 'if' conditional, false");
-  			} */
+  			
   		}
   		xhr.open("GET", "http://localhost:8080/Project1/allReimbursements");
   		xhr.send();
   	}
+  */
   </script>
+  
+   <script>
+  	function populateTable(userString) {
+  		if(userString === null) {
+  	  		window.location = "http://localhost:8080/Project1/"; // redirect back to the initial html 
+  	  	} else {
+  	  		let wholeUser = JSON.parse(userString);
+  	  		if(wholeUser != null) {
+  	  			// implement individual user DOM manipulation here...
+  	  			// display welcome user names
+  	  			displayname.innerHTML = wholeUser.firstName + " " + wholeUser.lastName;
+  	  			console.log(wholeUser);
+  	  			// input reimbursement data
+  	  			let allReimbursements = JSON.parse(allReimbursementsString);
+  	  			console.log(allReimbursements);
+  	  		
+  	  			for(key in allReimbursements) {
+  	  				var tr = document.createElement('tr');
+  	  				tr.innerHTML = '<td>' + allReimbursements[key].reimId + '</td>' +
+  	  				'<td>' + allReimbursements[key].timeSubmitted + '</td>' +
+  	  				'<td>' + allReimbursements[key].amount + '</td>' +
+  	  				'<td>' + allReimbursements[key].type + '</td>' +
+  	  				'<td>' + allReimbursements[key].description + '</td>' +
+  	  				'<td>' + allReimbursements[key].status + '</td>' +
+  	  				'<td>' + allReimbursements[key].author + '</td>' +
+  	  				'<td>' + allReimbursements[key].resolver + '</td>' +
+  	  				'<td>' + allReimbursements[key].timeResolved + '</td>';
+  	  				'<td>' + 'receipt here' + '</td>' +
+  	  				AllReimbursementsTable.appendChild(tr);
+  	  			};
+  	  			
+  	  			
+  	  		}
+  	  	}
+  	}
+  </script>
+     <!-- USER LOGIN NAME DISPLAY 'displayname' -->
+  <script>
+  	console.log()
+  	let displayname = document.getElementById('displayname');
+  	let reimbursementTable = document.getElementById('AllReimbursementsTable');
+  	//let reimTable = document.getElementById('reimTable');
+  	// grab the user object associated with the session
+  	let userString = sessionStorage.getItem('currentUser');
+  	let allReimbursementsString = sessionStorage.getItem('allReimbursements');
+  	// make sure not empty,
+  	console.log(userString);
+  	console.log(allReimbursementsString);
+  	populateTable(userString);
+  </script>
+ 
   
   <script>
   	function updateStatus() {
@@ -343,8 +350,9 @@
   		xhr.onreadystatechange = function() {
   			if((this.readyState === 4) && (this.status === 200)) {
   				alert("Status was succesfully changed");
-  				//TRY TO UPDATE THE PAGE AFTER... potentially save the first <script> as a function, run the script in it's own script, and rerun that script here too...?
-  				window.location = "http://localhost:8080/Project1/manager/project1-manager.html";
+  				getReimbursements();
+  				populateTable(userString);
+  				
   			} 
   			if((this.readyState === 4) && (this.status != 200))  {
   				alert("Unable to update status.")

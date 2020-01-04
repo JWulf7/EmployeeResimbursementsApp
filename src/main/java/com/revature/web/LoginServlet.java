@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet{
 		String passwordB4 = uLogin.getPassword();
 		logger.info("Attempted login with username: " + username);
 		User loggedUser = uLogic.login(username, passwordB4);  // checks if user/password is correct and returns whole user object
-		
+		System.out.println(loggedUser.toString());
 		
 		if((loggedUser != null) && (loggedUser.getRole() == UserRoles.Employee)) {	// this is where I should check if user is a financial manager
 			HttpSession session = req.getSession();		// gets current session or creates one if did not exist

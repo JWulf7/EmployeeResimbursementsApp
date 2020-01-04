@@ -167,3 +167,72 @@
 2020-01-03 14:27:10 INFO  LoginServlet:52 - Attempted login with username: Manager
 2020-01-03 14:27:37 INFO  ReimbursementsDAOImpl:209 - Reimbursement No.11 status was changed to: Pending
 2020-01-03 14:27:37 INFO  UpdateReimbursementStatusServlet:67 - Manager # 1, changed Reimbursement ID: 11 to Status: 1
+2020-01-03 18:53:23 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 19:07:54 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 19:08:20 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-03 19:09:19 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 19:36:43 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 19:38:12 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 19:48:18 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 19:49:03 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-03 19:49:11 INFO  LoginServlet:52 - Attempted login with username: Employee
+2020-01-03 19:49:11 INFO  LoginServlet:68 - Employee succesfully logged in: 2020-01-03T19:49:11.616
+2020-01-03 19:49:23 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-03 19:49:30 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 19:54:37 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 19:58:29 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:02:59 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:05:45 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:12:10 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:18:30 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:18:30 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:19:58 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:20:38 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-03 20:21:05 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:30:45 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:31:06 INFO  ReimbursementsDAOImpl:209 - Reimbursement No.8 status was changed to: Pending
+2020-01-03 20:31:06 INFO  UpdateReimbursementStatusServlet:67 - Manager # 1, changed Reimbursement ID: 8 to Status: -1
+2020-01-03 20:33:48 INFO  ReimbursementsDAOImpl:209 - Reimbursement No.9 status was changed to: Pending
+2020-01-03 20:33:48 INFO  UpdateReimbursementStatusServlet:67 - Manager # 1, changed Reimbursement ID: 9 to Status: 1
+2020-01-03 20:36:34 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:36:54 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.3 status was changed to: Pending
+2020-01-03 20:36:54 INFO  UpdateReimbursementStatusServlet:66 - Manager # 1, changed Reimbursement ID: 3 to Status: 1
+2020-01-03 20:37:01 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-03 20:37:09 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:39:42 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:39:56 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.2 status was changed to: Pending
+2020-01-03 20:39:56 INFO  UpdateReimbursementStatusServlet:66 - Manager # 1, changed Reimbursement ID: 2 to Status: 1
+2020-01-03 20:43:46 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:44:07 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.24 status was changed to: Pending
+2020-01-03 20:44:07 INFO  UpdateReimbursementStatusServlet:66 - Manager # 1, changed Reimbursement ID: 24 to Status: 1
+2020-01-03 20:44:54 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:45:14 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.16 status was changed to: Pending
+2020-01-03 20:45:14 INFO  UpdateReimbursementStatusServlet:66 - Manager # 1, changed Reimbursement ID: 16 to Status: -1
+2020-01-03 20:54:01 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:56:29 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:57:30 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:59:41 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 20:59:56 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.17 status was changed to: Pending
+2020-01-03 20:59:56 INFO  UpdateReimbursementStatusServlet:66 - Manager # 1, changed Reimbursement ID: 17 to Status: 1
+2020-01-03 21:01:15 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 21:01:44 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.22 status was changed to: Pending
+2020-01-03 21:01:44 INFO  UpdateReimbursementStatusServlet:66 - Manager # 1, changed Reimbursement ID: 22 to Status: 1
+2020-01-03 21:05:57 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-03 21:06:15 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.10 status was changed to: Pending
+2020-01-03 21:06:15 INFO  UpdateReimbursementStatusServlet:66 - Manager # 1, changed Reimbursement ID: 10 to Status: 1
+2020-01-03 21:15:07 INFO  LoginServlet:52 - Attempted login with username: Employee
+2020-01-03 21:15:08 INFO  LoginServlet:68 - Employee succesfully logged in: 2020-01-03T21:15:08.307
+2020-01-03 21:15:52 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 3; Amount = $389.99; Description = Seafood dinner
+2020-01-03 21:20:31 INFO  LoginServlet:52 - Attempted login with username: Employee
+2020-01-03 21:20:32 INFO  LoginServlet:68 - Employee succesfully logged in: 2020-01-03T21:20:32.510
+2020-01-03 21:21:34 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $2.5E7; Description = Mars for the weekend
+2020-01-03 21:21:48 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-03 21:21:54 INFO  LoginServlet:52 - Attempted login with username: Employee
+2020-01-03 21:21:54 INFO  LoginServlet:68 - Employee succesfully logged in: 2020-01-03T21:21:54.765
+2020-01-03 21:23:11 INFO  LoginServlet:52 - Attempted login with username: Employee
+2020-01-03 21:23:12 INFO  LoginServlet:68 - Employee succesfully logged in: 2020-01-03T21:23:12.239
+2020-01-03 21:23:57 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 4; Amount = $25.0; Description = Work jeans that make my ass look good
+2020-01-03 21:24:06 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-03 21:27:31 INFO  LoginServlet:52 - Attempted login with username: Employee
+2020-01-03 21:27:32 INFO  LoginServlet:68 - Employee succesfully logged in: 2020-01-03T21:27:32.003
+2020-01-03 21:28:04 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $49.99; Description = train ticket to Toronto

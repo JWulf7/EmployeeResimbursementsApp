@@ -21,7 +21,9 @@ function tryLogin() {
 		}
 		if((this.readyState ===4) && (this.status === 418)) {
 			sessionStorage.setItem('currentUser', this.responseText);
-			window.location = "http://localhost:8080/Project1/manager/project1-manager.html";// location of succesful login window redirect
+			console.log(this.responseText);
+			getReimbursements();
+//			window.location = "http://localhost:8080/Project1/manager/project1-manager.html";// location of succesful login window redirect
 		}
 		if(this.readyState === 4 && this.status === 204) {	// http status no content
 			// alert is probably more elegant than a page redirect... but if have time look into creating a modal perhaps???
@@ -35,3 +37,19 @@ function tryLogin() {
 	xhr.send(JSON.stringify(loginInfoJSObject));
 	
 }
+
+function getReimbursements() {
+		console.log("running getReimbursements script");
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if((this.readyState === 4) && (this.status === 200)) {
+				console.log("in getReimbursements(), inside 'if' conditional, true");
+				sessionStorage.setItem('allReimbursements', this.responseText);
+				console.log("SHOULD HAVE 'allReimbursements' in sessionStorage now");
+				window.location = "http://localhost:8080/Project1/manager/project1-manager.html";
+			} 
+			
+		}
+		xhr.open("GET", "http://localhost:8080/Project1/allReimbursements");
+		xhr.send();
+	}

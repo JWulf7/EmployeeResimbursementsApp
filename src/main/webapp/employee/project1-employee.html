@@ -39,7 +39,7 @@
         } 
     </style>
 
-	<script src="scripts/loginscript.js"></script>
+	<script src="../scripts/loginscript.js"></script>
 	<!-- <script src="scripts/newreimbursementscript.js"></script>	 -->
 	
     <script>
@@ -57,50 +57,8 @@
     	}
     </script>
     
-    <script>
-    function submitReimbursement() {
-    	// grab the form
-    	let form = document.newReimbursementForm;
-    	// get the values
-    	let amount = form.amount.value;
-    	let typeNum = form.typeNum.value;
-    	let description = form.description.value;
-    	// may want to comment out file until more investigation, we'll see...
-    	//let file = form.file.value;		
-    	
-    	// create temp js object to hold input
-    	let newReimbursementJSObject = {
-    			amount: amount,
-    			typeNum: typeNum,
-    			description: description,
-    			//file: file,
-    	}
-    	
-    	// instantiate xhr
-    	let xhr = new XMLHttpRequest();
-    	
-    	xhr.onreadystatechange = function() {
-    		if((this.readyState === 4) && (this.status === 201)) {
-    			alert("Reimbursement Submission Succesful")
-    			// refresh the page to show reimbursement submitted in the all reimbursements table??
-    			//document.location.reload(true);  ~~ this causes me to have to submit twice for 1 to go through...
-    			
-    			
-    		} else if ((this.readyState === 4) && (this.status !== 201)) {
-    			alert("Reimbursement Submission Failed.")
-    		}
-    	};
-    	
-    	xhr.open("POST", "http://localhost:8080/Project1/newReimbursement");
-    	xhr.send();		/*JSON.stringify(newReimbursementJSObject)*/
-    }
-    </script>
-	<script>
-		function submitNew() {
-			console.log("in submitNew function");
-			window.location = "http://localhost:8080/Project1/employee/project1-employee.html";
-		}
-	</script>
+    
+	
 
 </head>
 
@@ -314,49 +272,105 @@
     </script>
   <!-- USER LOGIN NAME DISPLAY 'displayname' -->
   <script>
+  	function populateEmployeeTable(userString) {
+  		if(userString === null) {
+  	  		window.location = "http://localhost:8080/Project1/"; // redirect back to the initial html 
+  	  	} else {
+  	  		let wholeUser = JSON.parse(userString);
+  	  		if(wholeUser != null) {
+  	  			// implement individual user DOM manipulation here...
+  	  			// display welcome user names
+  	  			displayname.innerHTML = wholeUser.firstName + " " + wholeUser.lastName;
+  	  			console.log(wholeUser);
+  	  			// input reimbursement data
+  	  			let reims = wholeUser.userReimbursements;
+  	  			console.log(reims);
+  	  			//reimbursementTable.append()
+  	  		//	reims.forEach((row) => {
+  	  		//		console.log(row);
+  	  		//	});
+  	  			//for(reims.keySet i : reims) {
+  	  				
+  	  		//	}
+  	  			//Object.keys(reims).forEach(function(object) {
+  	  			for(key in reims) {
+  	  				var tr = document.createElement('tr');
+  	  				tr.innerHTML = '<td>' + reims[key].reimId + '</td>' +
+  	  				'<td>' + reims[key].timeSubmitted + '</td>' +
+  	  				'<td>' + reims[key].amount + '</td>' +
+  	  				'<td>' + reims[key].type + '</td>' +
+  	  				'<td>' + reims[key].description + '</td>' +
+  	  				'<td>' + reims[key].status + '</td>' +
+  	  				'<td>' + reims[key].resolver + '</td>' +
+  	  				'<td>' + reims[key].timeResolved + '</td>';
+  	  				reimbursementTable.appendChild(tr);
+  	  			};
+  	  			
+  	  			
+  	  		}
+  	  	}
+  	}
+  </script>
+  
+  <script>
   	let displayname = document.getElementById('displayname');
   	let reimbursementTable = document.getElementById('ReimbursementTable');
   	let reimTable = document.getElementById('reimTable');
   	// grab the user object associated with the session
   	let userString = sessionStorage.getItem('currentUser');
   	// make sure not empty, 
-  	if(userString === null) {
-  		window.location = "http://localhost:8080/Project1/"; // redirect back to the initial html 
-  	} else {
-  		let wholeUser = JSON.parse(userString);
-  		if(wholeUser != null) {
-  			// implement individual user DOM manipulation here...
-  			// display welcome user names
-  			displayname.innerHTML = wholeUser.firstName + " " + wholeUser.lastName;
-  			console.log(wholeUser);
-  			// input reimbursement data
-  			let reims = wholeUser.userReimbursements;
-  			console.log(reims);
-  			//reimbursementTable.append()
-  		//	reims.forEach((row) => {
-  		//		console.log(row);
-  		//	});
-  			//for(reims.keySet i : reims) {
-  				
-  		//	}
-  			//Object.keys(reims).forEach(function(object) {
-  			for(key in reims) {
-  				var tr = document.createElement('tr');
-  				tr.innerHTML = '<td>' + reims[key].reimId + '</td>' +
-  				'<td>' + reims[key].timeSubmitted + '</td>' +
-  				'<td>' + reims[key].amount + '</td>' +
-  				'<td>' + reims[key].type + '</td>' +
-  				'<td>' + reims[key].description + '</td>' +
-  				'<td>' + reims[key].status + '</td>' +
-  				'<td>' + reims[key].resolver + '</td>' +
-  				'<td>' + reims[key].timeResolved + '</td>';
-  				reimbursementTable.appendChild(tr);
-  			};
-  			
-  			
-  		}
-  	}
+  	populateEmployeeTable(userString);
+  
   </script>
+  
+  <script>
+    function submitReimbursement() {
+    	// grab the form
+    	let form = document.newReimbursementForm;
+    	// get the values
+    	let amount = form.amount.value;
+    	let typeNum = form.typeNum.value;
+    	let description = form.description.value;
+    	// may want to comment out file until more investigation, we'll see...
+    	//let file = form.file.value;		
+    	
+    	// create temp js object to hold input
+    	let newReimbursementJSObject = {
+    			amount: amount,
+    			typeNum: typeNum,
+    			description: description,
+    			//file: file,
+    	}
+    	
+    	// instantiate xhr
+    	let xhr = new XMLHttpRequest();
+    	
+    	xhr.onreadystatechange = function() {
+    		if((this.readyState === 4) && (this.status === 201)) {
+    			alert("Reimbursement Submission Succesful")
+    			// refresh the page to show reimbursement submitted in the all reimbursements table??
+    			//document.location.reload(true);  ~~ this causes me to have to submit twice for 1 to go through...
+    			tryLogin();
+    			populateEmployeeTable(userString);
+    			
+    		} else if ((this.readyState === 4) && (this.status !== 201)) {
+    			alert("Reimbursement Submission Failed.")
+    		}
+    	};
+    	
+    	xhr.open("POST", "http://localhost:8080/Project1/newReimbursement");
+    	xhr.send();		/*JSON.stringify(newReimbursementJSObject)*/
+    }
+    </script>
+    
+    <script>
+		function submitNew() {
+			console.log("in submitNew function");
+			window.location = "http://localhost:8080/Project1/employee/project1-employee.html";
+			tryLogin();
+			populateEmployeeTable(userString);
+		}
+	</script>
 </body>
 
 </html>

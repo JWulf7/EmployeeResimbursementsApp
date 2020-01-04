@@ -46,6 +46,7 @@ public class UserLogic {
 			return role;
 		} else if(roleNum == 2) {
 			role = UserRoles.FinanceManager;
+			System.out.println("UserRoles is FinanceManager");
 			return role;
 		}
 		return null;
