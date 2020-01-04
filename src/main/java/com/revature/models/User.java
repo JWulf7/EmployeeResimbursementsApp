@@ -42,6 +42,16 @@ public class User {
 		this.email = email;
 		this.roleNum = roleNum;
 	}
+	
+	public User(NewUserDTO userDTO) {
+		super();
+		this.userName = userDTO.getUserName();
+		this.userPassword = userDTO.getPassword();
+		this.roleNum = userDTO.getUserRole();
+		this.firstName = userDTO.getFirstName();
+		this.lastName = userDTO.getLastName();
+		this.email = userDTO.getEmail();
+	}
 
 
 

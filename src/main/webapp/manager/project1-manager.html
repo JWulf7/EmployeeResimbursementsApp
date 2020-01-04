@@ -87,10 +87,43 @@
         </div>
 
     </div>
-
-    <div class="container new">
+	
+	<div class="container newUser">
+    <hr><br><br>
         <div class="row">
             <div class="container">
+            <h2>Create new user:</h2>
+            <a href="#newUser" class="btn btn-primary" data-toggle="collapse">New User</a>
+            </div>
+        </div>
+
+        <div id="newUser" class="collapse"
+            style="border: rgb(230, 226, 226) 1.5px solid; background-color: whitesmoke;">
+
+            <form name="createNewUserForm" onSubmit="createNewUser(event.preventDefault())" style="border: 0;" enctype="multipart/form-data">
+                <div class="row">
+                    <input name ="userName" type="text" placeholder="Enter Username" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <select class="form-control col-lg-3 col-md-3 col-xs-12" name="userRole">
+                        <option value="" disabled selected>Select Role:</option>
+                        <option value="1">Employee</option>
+                        <option value="2">Finance Manager</option>
+                    </select>
+                    <input name ="password" type="password" placeholder="Enter Password" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input name ="verifyPassword" type="password" placeholder="Re-Enter Password" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input name ="firstName" type="text" placeholder="Enter first name" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input name ="lastName" type="text" placeholder="Enter last name" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input name ="email" type="text" placeholder="Enter email" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input type="submit" class="btn btn-primary btn-lg">
+                </div>
+            </form>
+        </div>
+    </div>			
+	
+    <div class="container new">
+    <hr><br><br>
+        <div class="row">
+            <div class="container">
+            <h2>Reimbursement status:</h2>
             <a href="#approveDeny" class="btn btn-primary" data-toggle="collapse">Approve/Deny</a>
             </div>
         </div>
@@ -118,7 +151,7 @@
         <h2>All Reimbursements</h2>
         <a href="#reimTable" class="btn btn-primary" data-toggle="collapse" >View All</a>
         <table class="table table-hover table-striped collapse" id="reimTable">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search or empty for all...">
+            <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search or empty for all...">
             <thead>
                 <tr>
                     <th onclick="sortTable(0)">Reimbursement ID</th>
@@ -200,8 +233,9 @@
 
         </table>
 
-        
+    
     </div>
+    <div style="height: 70px;"></div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
@@ -236,7 +270,7 @@
           y = rows[i + 1].getElementsByTagName("td")[n];
           /* Check if the two rows should switch place,
           based on the direction, asc or desc: */
-          if (dir == "asc") {
+          if (dir == "asc") {												
             if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
               // If so, mark as a switch and break the loop:
               shouldSwitch = true;
@@ -285,6 +319,58 @@
   */
   </script>
   
+  <script>
+function searchTable() {
+    var input, filter, found, table, tr, td, i, j;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("AllReimbursementsTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+            }
+        }
+        if (found) {
+            tr[i].style.display = "";
+            found = false;
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+</script>
+  <!--
+  <script>
+function searchTable() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("reimTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  
+    for (j = 0; j < tr.length; j++) {
+  for (i = 0; i < tr.length; i++) {
+	
+    td = tr[i].getElementsByTagName("td")[j];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  }
+}
+</script>
+  -->
    <script>
   	function populateTable(userString) {
   		if(userString === null) {
@@ -304,7 +390,7 @@
   	  				var tr = document.createElement('tr');
   	  				tr.innerHTML = '<td>' + allReimbursements[key].reimId + '</td>' +
   	  				'<td>' + allReimbursements[key].timeSubmitted + '</td>' +
-  	  				'<td>' + allReimbursements[key].amount + '</td>' +
+  	  				'<td>$' + allReimbursements[key].amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + '</td>' +
   	  				'<td>' + allReimbursements[key].type + '</td>' +
   	  				'<td>' + allReimbursements[key].description + '</td>' +
   	  				'<td>' + allReimbursements[key].status + '</td>' +
@@ -361,6 +447,53 @@
   		xhr.open("POST", "http://localhost:8080/Project1/updateStatus");
   		xhr.send(JSON.stringify(statusUpdateObject));
   	}
+  </script>
+  
+  <script>
+  //userName userRole password verifyPassword firstName lastName email 
+	function createNewUser() {
+	console.log("running createNewUser script");
+	let userForm = document.createNewUserForm;
+	let userName = createNewUserForm.userName.value;
+	let userRole = createNewUserForm.userRole.value;
+	let password = createNewUserForm.password.value;
+	let verifyPassword = createNewUserForm.verifyPassword.value;
+	let firstName = createNewUserForm.firstName.value;
+	let lastName = createNewUserForm.lastName.value;
+	let email = createNewUserForm.email.value;
+	let newUserObject = {
+			userName: userName,
+			userRole: userRole,
+			password: password,
+			firstName: firstName,
+			lastName: lastName,
+			email: email,
+	}
+	if(password != verifyPassword) {
+		alert("Passwords do not match");
+		return;
+	}
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if((this.readyState === 4) && (this.status === 204)) {
+			alert("Username already exists \n Please select a different Username.");
+		} 
+		if((this.readyState === 4) && (this.status === 201)) {
+			alert("Success! \n" +
+				 "User: " + userName + " was created.");
+			userForm.reset();
+		}
+		if((this.readyState === 4) && (this.status === 202)) {
+			alert("New user was unable to be created, \n please try again later.");
+		} 
+		if((this.readyState === 4) && ((this.status != 200) && (this.status != 204) 
+				&& (this.status != 201) && this.status != 202))  {
+			alert("Unable to create new user");
+		}
+	}
+	xhr.open("POST", "http://localhost:8080/Project1/newUser");
+	xhr.send(JSON.stringify(newUserObject));
+}
   </script>
 </body>
 

@@ -59,5 +59,24 @@ public class UserLogic {
 		return user;
 	}
 	
+	public boolean createNewUser(User user) {
+		if (uDAO.getUserByUserName(user.getUserName()) == null) {
+			if (uDAO.createUser(user)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 	
+	public boolean userExists(String username) {
+		User userCheck = uDAO.getUserByUserName(username);
+		if(userCheck == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

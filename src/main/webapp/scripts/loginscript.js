@@ -1,10 +1,6 @@
-function tryLogin() {
-	// grab the form
-	let loginForm = document.loginForm;
-	// grab the values of the inputs of the form
-	let username = loginForm.username.value;
-	let password = loginForm.password.value;
-	
+
+
+function getUser(username, password) {
 	// create JS object w/ values, it will eventually turn into JSON to send
 	let loginInfoJSObject = {
 			username: username,
@@ -36,6 +32,15 @@ function tryLogin() {
 	// send xhr JSON request of the JS object we created earlier
 	xhr.send(JSON.stringify(loginInfoJSObject));
 	
+}
+
+function tryLogin() {
+	// grab the form
+	let loginForm = document.loginForm;
+	// grab the values of the inputs of the form
+	let username = loginForm.username.value;
+	let password = loginForm.password.value;
+	getUser(username, password);
 }
 
 function getReimbursements() {

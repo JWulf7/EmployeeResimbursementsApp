@@ -297,7 +297,7 @@
   	  				var tr = document.createElement('tr');
   	  				tr.innerHTML = '<td>' + reims[key].reimId + '</td>' +
   	  				'<td>' + reims[key].timeSubmitted + '</td>' +
-  	  				'<td>' + reims[key].amount + '</td>' +
+  	  				'<td>$' + reims[key].amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + '</td>' +
   	  				'<td>' + reims[key].type + '</td>' +
   	  				'<td>' + reims[key].description + '</td>' +
   	  				'<td>' + reims[key].status + '</td>' +
@@ -350,7 +350,11 @@
     			alert("Reimbursement Submission Succesful")
     			// refresh the page to show reimbursement submitted in the all reimbursements table??
     			//document.location.reload(true);  ~~ this causes me to have to submit twice for 1 to go through...
-    			tryLogin();
+				let userString = sessionStorage.getItem('currentUser');
+				let wholeUser = JSON.parse(userString);
+				let username = wholeUser.userName;
+				let password = wholeUser.userPassword;
+    			getUser(username,password);
     			populateEmployeeTable(userString);
     			
     		} else if ((this.readyState === 4) && (this.status !== 201)) {
@@ -366,9 +370,14 @@
     <script>
 		function submitNew() {
 			console.log("in submitNew function");
-			window.location = "http://localhost:8080/Project1/employee/project1-employee.html";
-			tryLogin();
+			
+			let userString = sessionStorage.getItem('currentUser');
+			let wholeUser = JSON.parse(userString);
+			let username = wholeUser.userName;
+			let password = wholeUser.userPassword;
+			getUser(username,password);
 			populateEmployeeTable(userString);
+			//window.location = "http://localhost:8080/Project1/employee/project1-employee.html";
 		}
 	</script>
 </body>
