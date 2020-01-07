@@ -102,17 +102,17 @@
 
             <form name="createNewUserForm" onSubmit="createNewUser(event.preventDefault())" style="border: 0;" enctype="multipart/form-data">
                 <div class="row">
-                    <input name ="userName" type="text" placeholder="Enter Username" class="col-lg-3 col-md-3 col-xs-12" required>
-                    <select class="form-control col-lg-3 col-md-3 col-xs-12" name="userRole">
+                    <input name ="userName" title="Must be atleast 6 characters long" type="text" placeholder="Enter Username" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <select title="Please select users role" class="form-control col-lg-3 col-md-3 col-xs-12" name="userRole">
                         <option value="" disabled selected>Select Role:</option>
                         <option value="1">Employee</option>
                         <option value="2">Finance Manager</option>
                     </select>
-                    <input name ="password" type="password" placeholder="Enter Password" class="col-lg-3 col-md-3 col-xs-12" required>
-                    <input name ="verifyPassword" type="password" placeholder="Re-Enter Password" class="col-lg-3 col-md-3 col-xs-12" required>
-                    <input name ="firstName" type="text" placeholder="Enter first name" class="col-lg-3 col-md-3 col-xs-12" required>
-                    <input name ="lastName" type="text" placeholder="Enter last name" class="col-lg-3 col-md-3 col-xs-12" required>
-                    <input name ="email" type="text" placeholder="Enter email" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input name ="password" title= "passwords must be atleast 6 characters long and  &#010 contain atleast: &#010 &#8226 1  uppercase letter &#010 &#8226 1 lowercase letter &#010 &#8226 1 digit 0-9" type="password" placeholder="Enter Password" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input name ="verifyPassword" title= "Verify password" type="password" placeholder="Re-Enter Password" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input name ="firstName" title="Please enter first name" type="text" placeholder="Enter first name" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input name ="lastName" title="Please enter last name" type="text" placeholder="Enter last name" class="col-lg-3 col-md-3 col-xs-12" required>
+                    <input name ="email" title="Please enter email address" type="text" placeholder="Enter email" class="col-lg-3 col-md-3 col-xs-12" required>
                     <input type="submit" class="btn btn-primary btn-lg">
                 </div>
             </form>
@@ -469,9 +469,39 @@ function searchTable() {
 			lastName: lastName,
 			email: email,
 	}
+	//Validation
 	if(password != verifyPassword) {
 		alert("Passwords do not match");
 		return;
+	}
+	if((!email.includes("@")) || (!email.includes("."))) {
+		alert("Please enter a valid email address.");
+		return;
+	}
+	if(userName.length < 6) {
+		alert("Usernames must be atleast 6 characters long \n" 
+				+ "Please try again.");
+		return;
+	}
+	if(((!password.includes("1")) && (!password.includes("2")) && (!password.includes("3")) && (!password.includes("4")) && (!password.includes("5"))
+			&& (!password.includes("6")) && (!password.includes("7")) && (!password.includes("8")) && (!password.includes("9")) && (!password.includes("0"))) 
+			|| ((!password.includes("a")) && (!password.includes("b")) && (!password.includes("c")) && (!password.includes("d")) && (!password.includes("e")) 
+					&& (!password.includes("f")) && (!password.includes("g")) && (!password.includes("h")) && (!password.includes("i")) && (!password.includes("j")) 
+					&& (!password.includes("k")) && (!password.includes("l")) && (!password.includes("m")) && (!password.includes("n")) && (!password.includes("o")) 
+					&& (!password.includes("p")) && (!password.includes("q")) && (!password.includes("r")) && (!password.includes("s")) && (!password.includes("t")) 
+					&& (!password.includes("u")) && (!password.includes("v")) && (!password.includes("w")) && (!password.includes("x")) && (!password.includes("y")) 
+					&& (!password.includes("z"))) 
+			|| ((!password.includes("A")) && (!password.includes("B")) && (!password.includes("C")) && (!password.includes("D")) && (!password.includes("E")) 
+					&& (!password.includes("F")) && (!password.includes("G")) && (!password.includes("H")) && (!password.includes("I")) && (!password.includes("J")) 
+					&& (!password.includes("K")) && (!password.includes("L")) && (!password.includes("M")) && (!password.includes("N")) && (!password.includes("O")) 
+					&& (!password.includes("P")) && (!password.includes("Q")) && (!password.includes("R")) && (!password.includes("S")) && (!password.includes("T")) 
+					&& (!password.includes("U")) && (!password.includes("V")) && (!password.includes("W")) && (!password.includes("X")) && (!password.includes("Y")) 
+					&& (!password.includes("Z")))
+			|| (password.length < 6))
+			{
+		alert("Passwords must contain atleast 1 uppercase letter, 1 lowercase letter, 1 number 0-9, and be atleast 6 characters long. \n"
+				+ "Please try again.")
+				return;
 	}
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {

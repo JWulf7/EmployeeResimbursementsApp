@@ -88,7 +88,10 @@ public class NewReimbursementServlet extends HttpServlet{
 			// should probably refresh the current page to reflect the user's new reimbursement on their reimbursement table
 			res.setStatus(201);
 			res.sendRedirect("/Project1/employee/project1-employee.html");
+		} else {
+			res.setStatus(204);
 		}
+		
 		
 	}
 }

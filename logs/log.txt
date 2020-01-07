@@ -282,3 +282,39 @@
 2020-01-04 17:14:21 INFO  LoginServlet:52 - Attempted login with username: Employee
 2020-01-04 17:14:21 INFO  LoginServlet:68 - Employee succesfully logged in: 2020-01-04T17:14:21.907
 2020-01-04 17:16:00 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-05 17:45:58 INFO  LoginServlet:52 - Attempted login with username: Employee
+2020-01-05 17:45:58 INFO  LoginServlet:68 - Employee succesfully logged in: 2020-01-05T17:45:58.803
+2020-01-05 17:51:44 INFO  LoginServlet:52 - Attempted login with username: Employee
+2020-01-05 17:51:44 INFO  LoginServlet:68 - Employee succesfully logged in: 2020-01-05T17:51:44.985
+2020-01-05 17:53:39 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-05 17:53:46 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-06 16:00:09 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-06 16:14:20 INFO  NewUserServlet:62 - User created:[Username: fds, Firstname: fjdksl, Lastname: fjkdsjf, User role#: 1, Email: jfkdsljlf
+2020-01-06 16:31:02 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-06 16:32:34 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-06 16:39:24 INFO  NewUserServlet:62 - User created:[Username: Revature, Firstname: Ron, Lastname: Revature, User role#: 1, Email: fjdsklfjs
+2020-01-06 17:38:01 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-06 17:41:12 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-06 17:42:55 INFO  NewUserServlet:62 - User created:[Username: Revature3, Firstname: Donald, Lastname: Glover, User role#: 1, Email: DG@mail.com
+2020-01-06 17:52:48 INFO  LoginServlet:52 - Attempted login with username: Manager
+2020-01-06 17:53:26 INFO  NewUserServlet:62 - User created:[Username: DougieP, Firstname: Doug, Lastname: Printz, User role#: 1, Email: hello@com
+2020-01-06 17:55:03 INFO  NewUserServlet:62 - User created:[Username: Florida44, Firstname: Flava, Lastname: Flav, User role#: 1, Email: hello@mail.com
+2020-01-06 17:57:16 INFO  LoginServlet:52 - Attempted login with username: timothy
+2020-01-06 18:00:52 INFO  LoginServlet:59 - Attempted login with username: Timotyhy
+2020-01-06 18:04:43 INFO  LoginServlet:62 - Attempted login with username: Timotry
+2020-01-06 18:04:44 INFO  LoginServlet:102 - failed login with username: Timotry
+2020-01-06 18:05:34 INFO  LoginServlet:62 - Attempted login with username: Rampant
+2020-01-06 18:05:34 INFO  LoginServlet:102 - failed login with username: Rampant
+2020-01-06 18:05:48 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-06 18:05:48 INFO  LoginServlet:102 - failed login with username: Employee
+2020-01-06 18:05:55 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-06 18:05:55 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-06T18:05:55.971
+2020-01-06 18:06:07 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-06 18:08:23 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-06 18:10:50 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-06 18:19:57 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-06 18:19:57 INFO  LoginServlet:102 - failed login with username: Manager
+2020-01-06 18:20:05 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-06 18:20:05 INFO  LoginServlet:102 - failed login with username: Manager
+2020-01-06 18:25:09 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-06 18:25:09 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-06T18:25:09.517

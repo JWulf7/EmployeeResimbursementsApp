@@ -109,7 +109,7 @@
 			<!-- onSubmit="submitReimbursement(event.preventDefault())" -->
             <form method="post" action="http://localhost:8080/Project1/newReimbursement"  name="newReimbursementForm"  style="border: 0;" enctype="multipart/form-data">
                 <div class="row">
-                    <input type="text" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12" name ="amount">
+                    <input type="number" max= "999999999999999999999999999999999999999999999" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12" name ="amount" id="amount">
                     <select class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Select Type" name="typeNum">
                         <option value="" disabled selected>Select Type</option>
                         <option value="1">Lodging</option>
@@ -121,8 +121,8 @@
                     <input type="submit" class="btn btn-primary btn-lg" onsubmit="submitNew(event.preventDefault())">
                 </div>
                 <div class="row">
-                    <textarea name="description" id="descriptBox" cols="30" rows="6" class="col-lg-4 col-sm-12"
-                        placeholder="Enter a description..."></textarea>
+                    <textarea maxlength="250" name="description" id="descriptBox" cols="30" rows="6" class="col-lg-4 col-sm-12"
+                        placeholder="Enter a description...(250 character max)"></textarea>
                 </div>
             </form>
         </div>
@@ -370,7 +370,12 @@
     <script>
 		function submitNew() {
 			console.log("in submitNew function");
-			
+			let submitAmt = document.getElementById('amount');
+			console.log(submitAmt);
+			if(submitAmt < 0) {
+				alert("Please enter a positive amount");
+				return;
+			}
 			let userString = sessionStorage.getItem('currentUser');
 			let wholeUser = JSON.parse(userString);
 			let username = wholeUser.userName;
@@ -378,6 +383,10 @@
 			getUser(username,password);
 			populateEmployeeTable(userString);
 			//window.location = "http://localhost:8080/Project1/employee/project1-employee.html";
+			if (this.status == 204) {
+				alert("submission unsucessful.")	
+			}
+			
 		}
 	</script>
 </body>
