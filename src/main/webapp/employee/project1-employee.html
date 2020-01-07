@@ -109,7 +109,7 @@
 			<!-- onSubmit="submitReimbursement(event.preventDefault())" -->
             <form method="post" action="http://localhost:8080/Project1/newReimbursement"  name="newReimbursementForm"  style="border: 0;" enctype="multipart/form-data">
                 <div class="row">
-                    <input type="number" max= "999999999999999999999999999999999999999999999" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12" name ="amount" id="amount">
+                    <input type="number" max= "999999999999999999999999999999999999999999999" min="0" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12" name ="amount" id="amount">
                     <select class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Select Type" name="typeNum">
                         <option value="" disabled selected>Select Type</option>
                         <option value="1">Lodging</option>
@@ -370,12 +370,6 @@
     <script>
 		function submitNew() {
 			console.log("in submitNew function");
-			let submitAmt = document.getElementById('amount');
-			console.log(submitAmt);
-			if(submitAmt < 0) {
-				alert("Please enter a positive amount");
-				return;
-			}
 			let userString = sessionStorage.getItem('currentUser');
 			let wholeUser = JSON.parse(userString);
 			let username = wholeUser.userName;

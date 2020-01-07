@@ -19,12 +19,9 @@ public class ReimbursementLogic {
 	ReimbursementsDAO rDAO = new ReimbursementsDAOImpl();
 	
 	public boolean createNewReimbursement(ReimbursementInput input, int author, byte[] file) {
-		System.out.println("started createNewReimbursement method");
 		Reimbursement newReimbursement = new Reimbursement(input);
-		System.out.println("Created new Reimbursement obj using ReimbursementInput as a parameter: new Reimbursement(input)");
 		newReimbursement.setAuthor(author);
 		newReimbursement.setReceipt(file);
-		System.out.println("about to check if newReimbursement isvalid");
 		if(isValidReimbursement(newReimbursement)) {
 			newReimbursement.setTimeSubmitted(createSubmissionTime());
 		boolean success = rDAO.createReimbursement(newReimbursement);

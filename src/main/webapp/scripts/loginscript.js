@@ -44,11 +44,11 @@ function tryLogin() {
 }
 
 function getReimbursements() {
-		console.log("running getReimbursements script");
+	
 		let xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if((this.readyState === 4) && (this.status === 200)) {
-				console.log("in getReimbursements(), inside 'if' conditional, true");
+
 				sessionStorage.setItem('allReimbursements', this.responseText);
 				console.log("SHOULD HAVE 'allReimbursements' in sessionStorage now");
 				window.location = "http://localhost:8080/Project1/manager/project1-manager.html";
