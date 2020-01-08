@@ -320,3 +320,9 @@
 2020-01-06 18:25:09 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-06T18:25:09.517
 2020-01-06 20:01:48 INFO  LoginServlet:62 - Attempted login with username: Employee
 2020-01-06 20:01:48 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-06T20:01:48.734
+2020-01-07 20:08:52 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-07 20:08:53 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-07T20:08:53.277
+2020-01-07 20:14:26 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-07 20:14:26 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-07T20:14:26.734
+2020-01-07 20:18:30 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 4; Amount = $50.0; Description = work jeans that make my butt look really good at work
+2020-01-07 20:23:46 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 3; Amount = $49.99; Description = steak

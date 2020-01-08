@@ -106,10 +106,10 @@
             style="border: rgb(230, 226, 226) 1.5px solid; background-color: whitesmoke;">
 
 
-			<!-- onSubmit="submitReimbursement(event.preventDefault())" -->
+			<!-- onsubmit="submitNew(event.preventDefault())" -->
             <form method="post" action="http://localhost:8080/Project1/newReimbursement"  name="newReimbursementForm"  style="border: 0;" enctype="multipart/form-data">
                 <div class="row">
-                    <input type="number" max= "999999999999999999999999999999999999999999999" min="0" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12" name ="amount" id="amount">
+                    <input type="number" step="0.01" max= "99999999999999999999999999999999999999999.99" min="0.00" placeholder="Enter Amount xx.xx" class="col-lg-3 col-md-3 col-xs-12" name ="amount" id="amount">
                     <select class="form-control col-lg-3 col-md-3 col-xs-12" placeholder="Select Type" name="typeNum">
                         <option value="" disabled selected>Select Type</option>
                         <option value="1">Lodging</option>
@@ -117,8 +117,8 @@
                         <option value="3">Food</option>
                         <option value="4">Other</option>
                     </select>
-                    <input type="file"  id="fileUpload" class="btn btn-info" name="filename">
-                    <input type="submit" class="btn btn-primary btn-lg" onsubmit="submitNew(event.preventDefault())">
+                    <input type="file"  id="fileUpload" onchange="handle(event)" class="btn btn-info" name="filename">
+                    <input type="submit" class="btn btn-primary btn-lg" onSubmit="submitReimbursement(event.preventDefault())">
                 </div>
                 <div class="row">
                     <textarea maxlength="250" name="description" id="descriptBox" cols="30" rows="6" class="col-lg-4 col-sm-12"
@@ -324,7 +324,25 @@
   </script>
   
   <script>
+  	//$document.
+  
+  	function handle(event) {
+  		var reader = new FileReader();
+  		let file = event.target.files[0];
+  		reader.onloadend = () => {
+  			var data = reader.result.split(",")[1];
+  			sessionStorage.setItem("data", data);
+  			
+  		}
+  		if(file) {
+  			reader.readAsDataURL(file)
+  		}
+  		
+  	}
+  
+  
     function submitReimbursement() {
+    	/*
     	// grab the form
     	let form = document.newReimbursementForm;
     	// get the values
@@ -339,8 +357,16 @@
     			amount: amount,
     			typeNum: typeNum,
     			description: description,
-    			//file: file,
+    			file: file,
     	}
+    	*/
+    	let form = document.newReimbursementForm;
+    	let formdata = new FormData();
+    	formdata.append('amount', form.amount.value);
+    	formdata.append('typeNum', form.typeNum.value);
+    	formdata.append('description', form.description.value);
+    	formdata.append('file', sessionStorage.getItem('data'));
+    	
     	
     	// instantiate xhr
     	let xhr = new XMLHttpRequest();
@@ -363,7 +389,7 @@
     	};
     	
     	xhr.open("POST", "http://localhost:8080/Project1/newReimbursement");
-    	xhr.send();		/*JSON.stringify(newReimbursementJSObject)*/
+    	xhr.send(formdata);		/*JSON.stringify(newReimbursementJSObject)*/
     }
     </script>
     

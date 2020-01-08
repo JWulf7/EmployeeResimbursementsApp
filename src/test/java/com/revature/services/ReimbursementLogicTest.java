@@ -1,15 +1,24 @@
 package com.revature.services;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.revature.models.ReimStatus;
 import com.revature.models.ReimTypes;
 import com.revature.models.Reimbursement;
+import com.revature.models.ReimbursementInput;
+import com.revature.repositories.ReimbursementsDAOImpl;
 
 public class ReimbursementLogicTest {
 
@@ -28,14 +37,33 @@ public class ReimbursementLogicTest {
 
 	
 	
-	
-	
-	@Test
-	public void testCreateNewReimbursement() {
-		
-		
-		fail("Not yet implemented");
-	}
+//	@RunWith(MockitoJUnitRunner.class)
+//	public class MockedTest {
+//		@InjectMocks
+//		ReimbursementLogic rLogic;
+//
+//		@Mock
+//		ReimbursementsDAOImpl rDAOMock;
+
+		@Test
+		public void testTTTTTTTTTTTTTTTTTTTTTTCreateNewReimbursement() {
+			
+			ReimbursementsDAOImpl rDAOMock = mock(ReimbursementsDAOImpl.class);
+			ReimbursementLogic rLogic = new ReimbursementLogic(rDAOMock);
+			
+			ReimbursementInput rInput = new ReimbursementInput(25, "Test", 1);
+			int author = 3;
+			byte[] file = {1,2,3,4,5};
+			Reimbursement reimbursement = new Reimbursement(rInput);
+			
+//			when(rLogic = new ReimbursementLogic(rDAOMock)).thenReturn(true);
+			when(rDAOMock.createReimbursement(reimbursement)).thenReturn(true);
+			boolean created = rLogic.createNewReimbursement(rInput, author, file);
+			assertEquals(true, created);
+
+			//verify(rDAOMock, times(1)).createReimbursement(reimbursement);
+		}
+//	}
 
 	/*
 	 * **********************Status to Enum******************

@@ -15,6 +15,15 @@ import com.revature.repositories.UsersDAOImpl;
 
 public class ReimbursementLogic {
 
+	public ReimbursementLogic() {}
+	
+	public ReimbursementLogic(UsersDAO uDAO) {
+		this.uDAO = uDAO;
+	}
+	public ReimbursementLogic(ReimbursementsDAO rDAO) {
+		this.rDAO = rDAO;
+	}
+	
 	UsersDAO uDAO = new UsersDAOImpl();
 	ReimbursementsDAO rDAO = new ReimbursementsDAOImpl();
 	

@@ -223,7 +223,7 @@ public class Reimbursement {
 	public String toString() {
 		return "Reimbursement [reimId=" + reimId + ", amount=" + amount + ", timeSubmitted=" + timeSubmitted
 				+ ", timeResolved=" + timeResolved + ", description=" + description + ", receipt=" + Arrays.toString(receipt)
-				+ ", author=" + author + ", resolver=" + resolver + ", status=" + status + ", type=" + type + "]";
+				+ ", author=" + author + ", resolver=" + resolver + ", status=" + status + ", type=" + type + ", typeNum=" + typeNum + "]";
 	}
 }
 	
