@@ -86,8 +86,12 @@ public class NewReimbursementServlet extends HttpServlet{
 			// should probably log the reimbursement 
 			// should create an alert with a success message.
 			// should probably refresh the current page to reflect the user's new reimbursement on their reimbursement table
+			System.out.println("inside if conditional in NewReimbursementServlet, about to set res status to 201");
+			res.setContentType("application/json");
 			res.setStatus(201);
+			
 			res.sendRedirect("/Project1/employee/project1-employee.html");
+			
 		} else {
 			res.setStatus(204);
 		}

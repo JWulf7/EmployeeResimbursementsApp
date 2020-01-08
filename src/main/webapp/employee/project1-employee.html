@@ -207,10 +207,13 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+   	<script src="../scripts/popper.js"></script>
+   	<!-- 
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+     -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 <!-- SORTING TABLE-->
@@ -360,6 +363,7 @@
     			file: file,
     	}
     	*/
+        console.log("inside sumbitReimbursement() function");
     	let form = document.newReimbursementForm;
     	let formdata = new FormData();
     	formdata.append('amount', form.amount.value);
@@ -371,22 +375,33 @@
     	// instantiate xhr
     	let xhr = new XMLHttpRequest();
     	
+       
     	xhr.onreadystatechange = function() {
     		if((this.readyState === 4) && (this.status === 201)) {
-    			alert("Reimbursement Submission Succesful")
+    			alert("Reimbursement Submission Succesful");
+    			console.log("reimbursement succesful");
     			// refresh the page to show reimbursement submitted in the all reimbursements table??
     			//document.location.reload(true);  ~~ this causes me to have to submit twice for 1 to go through...
+    			
 				let userString = sessionStorage.getItem('currentUser');
 				let wholeUser = JSON.parse(userString);
 				let username = wholeUser.userName;
 				let password = wholeUser.userPassword;
     			getUser(username,password);
+    			console.log("just did the getUser() method from login script");
     			populateEmployeeTable(userString);
     			
     		} else if ((this.readyState === 4) && (this.status !== 201)) {
-    			alert("Reimbursement Submission Failed.")
+    			alert("Reimbursement Submission Failed.");
+    			console.log("reimbursement failed");
+    		} else if (xhr.response != null) {
+                alert("an alert");
+                console.log("response is no longer null after readystatechange");
+            } else {
+    			console.log("else on readystatechange");
+    			alert("neither of the if conditional blocks for submitReimbursement() xhr request are working..");
     		}
-    	};
+    	}
     	
     	xhr.open("POST", "http://localhost:8080/Project1/newReimbursement");
     	xhr.send(formdata);		/*JSON.stringify(newReimbursementJSObject)*/

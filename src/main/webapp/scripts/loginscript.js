@@ -14,6 +14,7 @@ function getUser(username, password) {
 		if((this.readyState ===4) && (this.status === 200)) {
 			sessionStorage.setItem('currentUser', this.responseText);
 			window.location = "http://localhost:8080/Project1/employee/project1-employee.html";// location of succesful login window redirect
+			console.log("inside the getUser method of login.script");
 		}
 		if((this.readyState ===4) && (this.status === 418)) {
 			sessionStorage.setItem('currentUser', this.responseText);

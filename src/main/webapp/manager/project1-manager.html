@@ -168,71 +168,30 @@
                
             </thead>
             <tbody id="AllReimbursementsTable">
-               <!--  <tr>
-                   <td>0001</td>
-                   <td>12/24/2019</td>
-                   <td>$82.15</td>
-                   <td>Food</td>
-                   <td>Applebee's</td>
-                   <td>Approved</td>
-                   <td>Employee1</td>
-                   <td>Jim Halpert</td>
-                   <td>12/29/2019</td>
-                   <td>reciept-0001.png</td>
-               </tr>
-               <tr>
-                <td>0002</td>
-                <td>12/24/2011</td>
-                <td>$582.15</td>
-                <td>Lodging</td>
-                <td>Hilton</td>
-                <td>Approved</td>
-                <td>Employee1</td>
-                <td>Dwight Schrute</td>
-                <td>12/29/2011</td>
-                <td>reciept-0002.png</td>
-            </tr>
-            <tr>
-                <td>0003</td>
-                <td>12/24/2015</td>
-                <td>$500.36</td>
-                <td>Travel</td>
-                <td>Plane Ticket</td>
-                <td>Approved</td>
-                <td>Employee2</td>
-                <td>Jim Halpert</td>
-                <td>12/29/2015</td>
-                <td>reciept-0003.png</td>
-            </tr>
-            <tr>
-                <td>0004</td>
-                <td>12/24/2020</td>
-                <td>$25.99</td>
-                <td>Food</td>
-                <td>Houlihan's</td>
-                <td>Pending</td>
-                <td>Employee1</td>
-                <td>-</td>
-                <td>-</td>
-                <td>reciept-0004.png</td>
-            </tr>
-            <tr>
-                <td>0005</td>
-                <td>12/01/2019</td>
-                <td>$8202.15</td>
-                <td>Food</td>
-                <td>Applebee's</td>
-                <td>Denied</td>
-                <td>Employee2</td>
-                <td>Jim Halpert</td>
-                <td>12/29/2019</td>
-                <td>reciept-0005.png</td>
-            </tr>
--->
+             
             </tbody>
 
         </table>
-
+		<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Receipt</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
     
     </div>
     <div style="height: 70px;"></div>
@@ -371,6 +330,12 @@ function searchTable() {
 }
 </script>
   -->
+  <script>
+  	function showReceipt() {
+  		
+  	}
+  </script>
+  
    <script>
   	function populateTable(userString) {
   		if(userString === null) {
@@ -396,9 +361,11 @@ function searchTable() {
   	  				'<td>' + allReimbursements[key].status + '</td>' +
   	  				'<td>' + allReimbursements[key].author + '</td>' +
   	  				'<td>' + allReimbursements[key].resolver + '</td>' +
-  	  				'<td>' + allReimbursements[key].timeResolved + '</td>';
-  	  				'<td>' + 'receipt here' + '</td>' +
+  	  				'<td>' + allReimbursements[key].timeResolved + '</td>' +
+  	  				'<td>' + '<button class="btn btn-primary btn-sm" onclick="showReceipt()" data-toggle="modal" data-target="#myModal">View</button>' + '</td>';
   	  				AllReimbursementsTable.appendChild(tr);
+  	  				
+  	  				
   	  			};
   	  			
   	  			

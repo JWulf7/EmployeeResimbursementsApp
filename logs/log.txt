@@ -326,3 +326,72 @@
 2020-01-07 20:14:26 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-07T20:14:26.734
 2020-01-07 20:18:30 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 4; Amount = $50.0; Description = work jeans that make my butt look really good at work
 2020-01-07 20:23:46 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 3; Amount = $49.99; Description = steak
+2020-01-08 10:55:00 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 10:55:00 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T10:55:00.671
+2020-01-08 10:56:01 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $1250.0; Description = Honk Kong to meet clients
+2020-01-08 10:56:06 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-08 10:56:16 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 10:56:16 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T10:56:16.795
+2020-01-08 10:56:33 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-08 11:09:47 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:09:48 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:09:48.198
+2020-01-08 11:11:11 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:11:11 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:11:11.812
+2020-01-08 11:11:56 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $25.0; Description = gas
+2020-01-08 11:13:05 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-08 11:16:38 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:16:38 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:16:38.734
+2020-01-08 11:20:42 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:20:42 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:20:42.812
+2020-01-08 11:25:18 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:25:19 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:25:19.175
+2020-01-08 11:26:01 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:26:01 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:26:01.944
+2020-01-08 11:26:26 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $7.35; Description = Tolls
+2020-01-08 11:28:04 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:28:05 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:28:05.032
+2020-01-08 11:29:19 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-08 11:29:25 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:29:25 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:29:25.800
+2020-01-08 11:29:46 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $40.0; Description = Troll toll
+2020-01-08 11:31:44 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $49.99; Description = motel 1
+2020-01-08 11:32:42 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $49.99; Description = fgfgjfj
+2020-01-08 11:38:06 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $25.0; Description = fdsfsdfsdf
+2020-01-08 11:38:44 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $25.0; Description = dfsdfsdfsdf
+2020-01-08 11:40:58 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $49.99; Description = fdsfdfsdf
+2020-01-08 11:45:34 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:45:34 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:45:34.486
+2020-01-08 11:45:46 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $49.99; Description = fdsfsdfsdf
+2020-01-08 11:48:25 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:48:26 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:48:26.300
+2020-01-08 11:48:39 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $25.0; Description = fdsfdsfs
+2020-01-08 11:49:14 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $25.0; Description = fdsfsdf
+2020-01-08 11:49:39 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $40.0; Description = Beijing
+2020-01-08 11:50:40 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $1000.0; Description = woo boi
+2020-01-08 11:50:52 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-08 11:52:23 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:52:24 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:52:24.052
+2020-01-08 11:52:37 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 4; Amount = $49.99; Description = try again
+2020-01-08 11:54:22 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 11:54:22 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T11:54:22.583
+2020-01-08 11:55:35 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $49.99; Description = tyr try try try
+2020-01-08 12:32:23 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 12:32:24 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T12:32:24.017
+2020-01-08 12:32:49 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $1000.0; Description = ski trip
+2020-01-08 12:38:50 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $250.0; Description = volcano trip
+2020-01-08 12:39:00 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-08 12:39:08 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 12:39:09 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T12:39:09.057
+2020-01-08 12:41:05 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $49.99; Description = jungle trip
+2020-01-08 12:46:22 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $250.0; Description = bali
+2020-01-08 12:59:31 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 12:59:32 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T12:59:32.375
+2020-01-08 13:00:00 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $25.99; Description = dis script
+2020-01-08 14:40:05 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-08 14:40:05 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-08T14:40:05.440
+2020-01-08 14:40:35 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-08 14:40:43 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-08 16:45:18 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-08 17:00:58 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-08 17:09:55 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-08 17:12:55 INFO  LoginServlet:62 - Attempted login with username: Manager
