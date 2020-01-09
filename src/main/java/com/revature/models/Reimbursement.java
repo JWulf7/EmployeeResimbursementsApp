@@ -37,6 +37,10 @@ public class Reimbursement {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Reimbursement(int id) {
+		this.reimId = id;
+	}
+	
 	public Reimbursement(ReimbursementInput input) {
 		this.amount = input.getAmount();
 		this.description = input.getDescription();

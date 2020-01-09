@@ -172,6 +172,23 @@
             </tbody>
 
         </table>
+        
+    <!--     <?php
+
+  $id = $_GET['id'];
+  // do some validation here to ensure id is safe
+
+  $link = mysql_connect("localhost", "root", "");
+  mysql_select_db("dvddb");
+  $sql = "SELECT dvdimage FROM dvd WHERE id=$id";
+  $result = mysql_query("$sql");
+  $row = mysql_fetch_assoc($result);
+  mysql_close($link);
+
+  header("Content-type: image/jpeg");
+  echo $row['dvdimage'];
+?>
+        --> 
 		<!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -183,7 +200,7 @@
           <h4 class="modal-title">Receipt</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+          <img id="modalImg" src="getImage.php?id=1" width="175" height="200" />
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -331,8 +348,30 @@ function searchTable() {
 </script>
   -->
   <script>
-  	function showReceipt() {
-  		
+  	function showReceipt(reimId) {
+  		//probably need to start an xhr that links to a servlet that retrieves the reciept by reimId
+
+      //instantiate js object for json request
+      let reimIdObject = {
+        reimId: reimId,
+      }
+
+      // instantiate XHR object
+      let xhr = new XMLHttpRequest();
+
+      // create function with conditions for ready state change
+      xhr.onreadystatechange = function() {
+        if((this.readyState === 4) && (this.status === 200) {
+          // write code for doing something to img tag with id=modalImg (i want to change the src attribute to the actual src code data i believe)
+        } else {
+          // write some text about error in displaying reciept
+        }
+      }
+
+      xhr.open("POST", "http://localhost:8080/Project1/getImage");
+      xhr.send(JSON.stringify(reimIdObject));
+      // ^^^^ i think this will work.. might need to do a post??
+
   	}
   </script>
   
@@ -362,7 +401,7 @@ function searchTable() {
   	  				'<td>' + allReimbursements[key].author + '</td>' +
   	  				'<td>' + allReimbursements[key].resolver + '</td>' +
   	  				'<td>' + allReimbursements[key].timeResolved + '</td>' +
-  	  				'<td>' + '<button class="btn btn-primary btn-sm" onclick="showReceipt()" data-toggle="modal" data-target="#myModal">View</button>' + '</td>';
+  	  				'<td>' + '<button class="btn btn-primary btn-sm" onclick="showReceipt(allReimbursements[key].reimId)" data-toggle="modal" data-target="#myModal">View</button>' + '</td>';
   	  				AllReimbursementsTable.appendChild(tr);
   	  				
   	  				

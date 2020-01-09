@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.TreeMap;
 
@@ -154,6 +155,13 @@ public class ReimbursementLogic {
 		} else {
 			return false;
 		}
+	}
+	
+	public String getReceiptFromReimId(int reimId) {
+		Reimbursement reimbursement = rDAO.getReimbursementFromReimId(reimId);
+		byte[] receiptArray = reimbursement.getReceipt();
+		String receipt64 = Base64.getEncoder().encodeToString(receiptArray);
+		return receipt64;
 	}
 	
 }
