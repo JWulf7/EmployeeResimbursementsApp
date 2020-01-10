@@ -35,6 +35,7 @@ public class ReimbursementLogic {
 		if(isValidReimbursement(newReimbursement)) {
 			newReimbursement.setTimeSubmitted(createSubmissionTime());
 		boolean success = rDAO.createReimbursement(newReimbursement);
+		System.out.println("success: " + success);
 		return success;
 		} else {
 			return false;
@@ -128,9 +129,12 @@ public class ReimbursementLogic {
 	
 	public boolean isValidReimbursement(Reimbursement reimbursement) {
 		double amt = ((double)((int)(reimbursement.getAmount()*100)))/100;
+		System.out.println("inside isValidReimbursement()");
 		if(amt >= 0) {
+			System.out.println("amount >= 0, returning true");
 			return true;
 		} else {
+			System.out.println("amount !>= 0, returning false");
 			return false;
 		}
 	}

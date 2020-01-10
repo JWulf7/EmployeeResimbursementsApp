@@ -361,10 +361,12 @@ function searchTable() {
 
       // create function with conditions for ready state change
       xhr.onreadystatechange = function() {
-        if((this.readyState === 4) && (this.status === 200) {
+        if((this.readyState === 4) && (this.status === 200)) {
+          console.log("receipt sent back response succesfully");
           // write code for doing something to img tag with id=modalImg (i want to change the src attribute to the actual src code data i believe)
         } else {
           // write some text about error in displaying reciept
+          console.log("receipt sent back response succesfully");
         }
       }
 
@@ -401,20 +403,46 @@ function searchTable() {
   	  				'<td>' + allReimbursements[key].author + '</td>' +
   	  				'<td>' + allReimbursements[key].resolver + '</td>' +
   	  				'<td>' + allReimbursements[key].timeResolved + '</td>' +
-  	  				'<td>' + '<button class="btn btn-primary btn-sm" onclick="showReceipt(allReimbursements[key].reimId)" data-toggle="modal" data-target="#myModal">View</button>' + '</td>';
+  	  				'<td>' + `<button class="btn btn-primary btn-sm" onclick="showReceipt(allReimbursements[key].reimId)" data-toggle="modal" data-target="#myModal">View</button>` + '</td>';
   	  				AllReimbursementsTable.appendChild(tr);
   	  				
   	  				
   	  			};
   	  			
-  	  			
+  	  			function showReceipt(reimId) {
+  		//probably need to start an xhr that links to a servlet that retrieves the reciept by reimId
+
+      //instantiate js object for json request
+      let reimIdObject = {
+        reimId: reimId,
+      }
+
+      // instantiate XHR object
+      let xhr = new XMLHttpRequest();
+
+      // create function with conditions for ready state change
+      xhr.onreadystatechange = function() {
+        if((this.readyState === 4) && (this.status === 200)) {
+          console.log("receipt sent back response succesfully");
+          // write code for doing something to img tag with id=modalImg (i want to change the src attribute to the actual src code data i believe)
+        } else {
+          // write some text about error in displaying reciept
+          console.log("receipt sent back response succesfully");
+        }
+      }
+
+      xhr.open("POST", "http://localhost:8080/Project1/getImage");
+      xhr.send(JSON.stringify(reimIdObject));
+      // ^^^^ i think this will work.. might need to do a post??
+
+  	}
   	  		}
   	  	}
   	}
   </script>
      <!-- USER LOGIN NAME DISPLAY 'displayname' -->
   <script>
-  	console.log()
+  	console.log("something starting...");
   	let displayname = document.getElementById('displayname');
   	let reimbursementTable = document.getElementById('AllReimbursementsTable');
   	//let reimTable = document.getElementById('reimTable');

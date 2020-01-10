@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import java.util.TreeMap;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -45,6 +47,24 @@ public class ReimbursementLogicTest {
 //		@Mock
 //		ReimbursementsDAOImpl rDAOMock;
 
+		ReimbursementsDAOImpl rDAOMock = mock(ReimbursementsDAOImpl.class);
+		ReimbursementLogic rLogic = new ReimbursementLogic(rDAOMock);
+		/*
+		@Test
+		public void CreattttttttttttttttttteNewReimbursementTest() {
+			ReimbursementInput rInput = new ReimbursementInput(25.00, "Test", 1);
+			int author = 3;
+			byte[] file = {1,2,3,4,5};
+			Reimbursement reim = new Reimbursement(rInput);
+			reim.setAuthor(author);
+			reim.setReceipt(file);
+			when(rDAOMock.createReimbursement(reim)).thenReturn(true);
+			
+			assertTrue(rLogic.createNewReimbursement(rInput, author, file));
+		}
+		*/
+	
+		/*
 		@Test
 		public void testTTTTTTTTTTTTTTTTTTTTTTCreateNewReimbursement() {
 			
@@ -65,6 +85,7 @@ public class ReimbursementLogicTest {
 		}
 //	}
 
+*/
 	/*
 	 * **********************Status to Enum******************
 	 */
@@ -367,11 +388,26 @@ public class ReimbursementLogicTest {
 	}
 
 	/*
-	 * ******************************************************
+	 * ************************GrabCompleteReimbursements******************************
 	 */
 	@Test
-	public void testGrabCompleteReimbursements() {
-		fail("Not yet implemented");
+	public void testGrabCompleteReimbursementsGood() {
+		byte[] file = {1,2,3,4};
+		Reimbursement reim = new Reimbursement(1, 25.00, "8-25-19", "8-26-19", "Test", file, 1, 1, 1, 1);
+		reim.setStatus(rLogic.statusToEnum(reim.getStatusNum()));
+		reim.setType(rLogic.typeToEnum(reim.getTypeNum()));
+		TreeMap<Integer, Reimbursement> reims = new TreeMap<>();
+		reims.put(1, reim);
+		when(rDAOMock.getReimbursementsFromUserId(1)).thenReturn(reims);
+		assertEquals(reims, rLogic.grabCompleteReimbursements(1));
+	}
+	
+	
+	@Test
+	public void testGrabCompleteReimbursementsEmptyGood() {
+		TreeMap<Integer, Reimbursement> reims = new TreeMap<>();
+		when(rDAOMock.getReimbursementsFromUserId(1)).thenReturn(reims);
+		assertEquals(reims, rLogic.grabCompleteReimbursements(1));
 	}
 	/*
 	 * ******************Create Submission Time***********************
@@ -408,16 +444,43 @@ public class ReimbursementLogicTest {
 	}
 
 	/*
-	 * **************************************************************
+	 * ***********************GrabAllCompleteReimbursements***************************************
 	 */
 	@Test
-	public void testGrabAllCompleteReimbursements() {
-		fail("Not yet implemented");
+	public void testGrabAllCompleteReimbursementsGood() {
+		byte[] file = {1,2,3,4};
+		Reimbursement reim = new Reimbursement(1, 25.00, "8-25-19", "8-26-19", "Test", file, 1, 1, 1, 1);
+		reim.setStatus(rLogic.statusToEnum(reim.getStatusNum()));
+		reim.setType(rLogic.typeToEnum(reim.getTypeNum()));
+		TreeMap<Integer, Reimbursement> reims = new TreeMap<>();
+		reims.put(1, reim);
+		reims.put(2, reim);
+		Reimbursement reim2 = new Reimbursement(2, 25.00, "8-25-19", "8-26-19", "Test", file, 2, 2, 2, 2);
+		reim.setStatus(rLogic.statusToEnum(reim.getStatusNum()));
+		reim.setType(rLogic.typeToEnum(reim.getTypeNum()));
+		Reimbursement reim3 = new Reimbursement(3, 25.00, "8-25-19", "8-26-19", "Test", file, 3, 3, 3, 3);
+		reim.setStatus(rLogic.statusToEnum(reim.getStatusNum()));
+		reim.setType(rLogic.typeToEnum(reim.getTypeNum()));
+		reims.put(3, reim2);
+		reims.put(4, reim3);
+		
+		when(rDAOMock.getAllReimbursements()).thenReturn(reims);
+		assertEquals(reims, rLogic.grabAllCompleteReimbursements());
 	}
-
+/*
+ * **********************************************UpdateStatus*************************************************
+ */
 	@Test
 	public void testUpdateStatus() {
-		fail("Not yet implemented");
+		
+		byte[] file = {1,2,3,4};
+		Reimbursement reim = new Reimbursement(1, 25.00, "8-25-19", "8-26-19", "Test", file, 1, 1, 1, 1);
+		reim.setStatus(rLogic.statusToEnum(reim.getStatusNum()));
+		reim.setType(rLogic.typeToEnum(reim.getTypeNum()));
+		
+		when(rDAOMock.getReimbursementFromReimId(1)).thenReturn(reim);
+		when(rDAOMock.updateReimbursementStatus(reim)).thenReturn(true);
+		assertEquals(true, rLogic.updateStatus(1, 1, 1));
 	}
 
 }

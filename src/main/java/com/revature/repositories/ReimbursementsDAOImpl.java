@@ -237,7 +237,9 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 
 			
 			boolean check = stmt.execute();
+			System.out.println("check: " + check);
 			if (check == false) {
+				
 				return true;
 			}
 

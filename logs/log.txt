@@ -395,3 +395,29 @@
 2020-01-08 17:00:58 INFO  LoginServlet:62 - Attempted login with username: Manager
 2020-01-08 17:09:55 INFO  LoginServlet:62 - Attempted login with username: Manager
 2020-01-08 17:12:55 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-09 20:07:29 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-09 20:07:29 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-09T20:07:29.845
+2020-01-09 20:09:27 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 4; Amount = $200.0; Description = hooker
+2020-01-09 20:09:41 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-09 20:09:57 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-09 20:10:40 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.24 status was changed to: Pending
+2020-01-09 20:10:40 INFO  UpdateReimbursementStatusServlet:66 - Manager # 1, changed Reimbursement ID: 24 to Status: -1
+2020-01-10 11:05:39 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-10 11:12:59 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-10 11:17:53 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-10 12:52:51 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-10 13:02:31 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-10 16:05:00 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-10 16:05:00 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-10T16:05:00.723
+2020-01-10 16:05:53 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $49.99; Description = AirBnB
+2020-01-10 16:08:56 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $1000.0; Description = trip to tanzania
+2020-01-10 16:12:54 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $25.0; Description = Test
+2020-01-10 16:13:47 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-10 16:13:47 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-10T16:13:47.750
+2020-01-10 16:14:01 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $25.0; Description = Test
+2020-01-10 16:14:39 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-10 16:14:39 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-10T16:14:39.754
+2020-01-10 16:15:02 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $25.0; Description = Test
+2020-01-10 16:29:28 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-10 16:29:29 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-10T16:29:29.230
+2020-01-10 16:29:44 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $25.0; Description = Test

@@ -82,6 +82,7 @@ public class NewReimbursementServlet extends HttpServlet{
 		if(rLogic.createNewReimbursement(reimbursementInput, userID, receipt)) {
 			logger.info("User # " + userID + " submitted new reimbursement: Type = " + reimbursementInput.getTypeNum() + "; Amount = $" 
 						+ reimbursementInput.getAmount() + "; Description = " + reimbursementInput.getDescription());
+			System.out.println(receipt.toString());
 			// do something here if a new reimbursement was created.
 			// should probably log the reimbursement 
 			// should create an alert with a success message.
