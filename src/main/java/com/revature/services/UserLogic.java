@@ -25,19 +25,7 @@ public class UserLogic {
 		this.uDAO = uDAO;
 	}
 	
-	public UserLogic(UsersDAO uDAO, DigestUtils digU) {
-		this.uDAO = uDAO;
-		DigestUtils digu = new DigestUtils();
-	}
-	
-	public UserLogic(ReimbursementsDAO rDAO) {
-		this.rDAO = rDAO;
-	}
-	
-	public UserLogic(UsersDAO uDAO, ReimbursementsDAO rDAO) {
-		this.uDAO = uDAO;
-		this.rDAO = rDAO;
-	}
+
 	
 	UsersDAO uDAO = new UsersDAOImpl();
 	ReimbursementsDAO rDAO = new ReimbursementsDAOImpl();
@@ -51,15 +39,20 @@ public class UserLogic {
 	public User grabWholeUser(String userName, String password) {
 		User user = uDAO.getUserByUserName(userName);
 		if (user != null) {
+			System.out.println("uDAO.getUserByUserName returns user, which is not null");
 			if (user.getUserPassword().equals(password)) {
 				TreeMap<Integer, Reimbursement> reimbursements = rLogic.grabCompleteReimbursements(user.getUserId());
 				user.setUserReimbursements(reimbursements);
 				user.setRole(roleToEnum(user.getRoleNum()));
 				return user;
 			} else {
+				System.out.println("Passwords don't match");
+				System.out.println("password input as parameter: " + password);
+				System.out.println("Password of user object: " + user.getUserPassword());
 				return null;
 			}
 		} else {
+			System.out.println("getUserByUserName returns null");
 			return null;
 		}
 	}

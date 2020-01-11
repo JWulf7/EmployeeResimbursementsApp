@@ -18,9 +18,7 @@ public class ReimbursementLogic {
 
 	public ReimbursementLogic() {}
 	
-	public ReimbursementLogic(UsersDAO uDAO) {
-		this.uDAO = uDAO;
-	}
+
 	public ReimbursementLogic(ReimbursementsDAO rDAO) {
 		this.rDAO = rDAO;
 	}

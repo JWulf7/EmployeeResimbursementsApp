@@ -36,13 +36,14 @@ public class UserLogicTest {
 	
 	UsersDAOImpl uDAOMock = mock(UsersDAOImpl.class);
 	DigestUtils digUMock = mock(DigestUtils.class);
-	UserLogic uLogic = new UserLogic(uDAOMock, digUMock);
+	UserLogic uLogic = new UserLogic(uDAOMock);
 	ReimbursementsDAOImpl rDAOMock = mock(ReimbursementsDAOImpl.class);
 	ReimbursementLogic rLogic = new ReimbursementLogic(rDAOMock);
 
 	/*
 	 * **********************Role to Enum********************************
 	 */
+	
 	@Test
 	public void testRoleToEnumEmployeeGood() {
 		UserLogic uLogic = new UserLogic();
@@ -119,9 +120,8 @@ public class UserLogicTest {
 /*
  * ******************************************************************************
  */							
-	/*					TESTING VERY COMPLICATED/IMPOSSIBLE BECAUSE USING A DEPENDENICES STATIC METHOD (SHA256Hex of DigestUtil dependency)
 	@Test
-	public void tttttttttttttttttttttestLoginGood() {
+	public void testLoginGood() {
 		User user = new User(1, "UserName", "19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd", "John", "Doe", "email@email.com", 1);
 		byte[] file = new byte[] {0,1,2,3,4,5};
 		Reimbursement reim1 = new Reimbursement(1, 25.00, "1/1/2020", "1/2/2020", "Test", file, 1, 2, 1, 1);
@@ -132,20 +132,71 @@ public class UserLogicTest {
 		user.setUserReimbursements(reims);
 		user.setRole(uLogic.roleToEnum(user.getRoleNum()));
 		
-		when(digUMock.sha256Hex("Password1")).thenReturn("19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd");
 		when(uDAOMock.getUserByUserName("UserName")).thenReturn(user);
 		when(rDAOMock.getReimbursementsFromUserId(1)).thenReturn(reims);
-		assertEquals(user, uLogic.grabWholeUser("UserName", "Password1"));
+		assertEquals(user, uLogic.login("UserName", "Password1"));
 	}
-	*/
+	
 	@Test
-	public void testCreateNewUser() {
-		fail("Not yet implemented");
+	public void testLoginGoodHashedPasswordsMatch() {
+		User user = new User(1, "UserName", "19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd", "John", "Doe", "email@email.com", 1);
+		byte[] file = new byte[] {0,1,2,3,4,5};
+		Reimbursement reim1 = new Reimbursement(1, 25.00, "1/1/2020", "1/2/2020", "Test", file, 1, 2, 1, 1);
+		Reimbursement reim2 = new Reimbursement(2, 25.00, "1/1/2020", "1/2/2020", "Test", file, 1, 2, 1, 2);
+		TreeMap<Integer, Reimbursement> reims = new TreeMap<>();
+		reims.put(1, reim1);
+		reims.put(2, reim2);
+		user.setUserReimbursements(reims);
+		user.setRole(uLogic.roleToEnum(user.getRoleNum()));
+		
+		when(uDAOMock.getUserByUserName("UserName")).thenReturn(user);
+		when(rDAOMock.getReimbursementsFromUserId(1)).thenReturn(reims);
+		assertEquals(user.getUserPassword(), uLogic.login("UserName", "Password1").getUserPassword());
+	}
+	
+	
+	/*
+	 * *******************************CreateNewUser*****************************************
+	 */
+	@Test
+	public void testCreateNewUserGood() {
+		User user = new User(1, "UserName", "EncryptedPassword", "John", "Doe", "email@email.com", 1);
+		when(uDAOMock.getUserByUserName("UserName")).thenReturn(null);
+		when(uDAOMock.createUser(user)).thenReturn(true);
+		assertTrue(uLogic.createNewUser(user));
+	}
+	
+	@Test
+	public void testCreateNewUserBadUserExists() {
+		User user = new User(1, "UserName", "EncryptedPassword", "John", "Doe", "email@email.com", 1);
+		when(uDAOMock.getUserByUserName("UserName")).thenReturn(user);
+		when(uDAOMock.createUser(user)).thenReturn(false);
+		assertFalse(uLogic.createNewUser(user));
+	}
+	
+	@Test
+	public void testCreateNewUserBadUserDAOFails() {
+		User user = new User(1, "UserName", "EncryptedPassword", "John", "Doe", "email@email.com", 1);
+		when(uDAOMock.getUserByUserName("UserName")).thenReturn(null);
+		when(uDAOMock.createUser(user)).thenReturn(false);
+		assertFalse(uLogic.createNewUser(user));
 	}
 
+	/*
+	 * *****************************UserExists**************************************************
+	*/
 	@Test
-	public void testUserExists() {
-		fail("Not yet implemented");
+	public void testUserExistsGood() {
+		User user = new User(1, "UserName", "EncryptedPassword", "John", "Doe", "email@email.com", 1);
+		when(uDAOMock.getUserByUserName("UserName")).thenReturn(user);
+		assertTrue(uLogic.userExists("UserName"));
 	}
+	
+	@Test
+	public void testUserExistsNoUserInDB() {
+		when(uDAOMock.getUserByUserName("UserName")).thenReturn(null);
+		assertFalse(uLogic.userExists("UserName"));
+	}
+	 
 
 }

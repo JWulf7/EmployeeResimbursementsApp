@@ -64,9 +64,9 @@ public class ReimbursementLogicTest {
 		}
 		*/
 	
-		/*
+		/**/
 		@Test
-		public void testTTTTTTTTTTTTTTTTTTTTTTCreateNewReimbursement() {
+		public void testCreateNewReimbursementGood() {
 			
 			ReimbursementsDAOImpl rDAOMock = mock(ReimbursementsDAOImpl.class);
 			ReimbursementLogic rLogic = new ReimbursementLogic(rDAOMock);
@@ -78,14 +78,31 @@ public class ReimbursementLogicTest {
 			
 //			when(rLogic = new ReimbursementLogic(rDAOMock)).thenReturn(true);
 			when(rDAOMock.createReimbursement(reimbursement)).thenReturn(true);
-			boolean created = rLogic.createNewReimbursement(rInput, author, file);
-			assertEquals(true, created);
+			//boolean created = rLogic.createNewReimbursement(rInput, author, file);
+			assertNotNull(rLogic.createNewReimbursement(rInput, author, file));
 
-			//verify(rDAOMock, times(1)).createReimbursement(reimbursement);
+		}
+		
+		@Test
+		public void testCreateNewReimbursementBadNotValid() {
+			
+			ReimbursementsDAOImpl rDAOMock = mock(ReimbursementsDAOImpl.class);
+			ReimbursementLogic rLogic = new ReimbursementLogic(rDAOMock);
+			
+			ReimbursementInput rInput = new ReimbursementInput(-25, "Test", 1);
+			int author = 3;
+			byte[] file = {1,2,3,4,5};
+			Reimbursement reimbursement = new Reimbursement(rInput);
+			
+//			when(rLogic = new ReimbursementLogic(rDAOMock)).thenReturn(true);
+			when(rDAOMock.createReimbursement(reimbursement)).thenReturn(true);
+			//boolean created = rLogic.createNewReimbursement(rInput, author, file);
+			assertFalse(rLogic.createNewReimbursement(rInput, author, file));
+
 		}
 //	}
 
-*/
+
 	/*
 	 * **********************Status to Enum******************
 	 */
