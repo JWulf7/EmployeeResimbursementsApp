@@ -16,9 +16,36 @@ import com.revature.repositories.UsersDAOImpl;
 
 public class UserLogic {
 
+	
+	public UserLogic() {
+		
+	}
+	
+	public UserLogic(UsersDAO uDAO) {
+		this.uDAO = uDAO;
+	}
+	
+	public UserLogic(UsersDAO uDAO, DigestUtils digU) {
+		this.uDAO = uDAO;
+		DigestUtils digu = new DigestUtils();
+	}
+	
+	public UserLogic(ReimbursementsDAO rDAO) {
+		this.rDAO = rDAO;
+	}
+	
+	public UserLogic(UsersDAO uDAO, ReimbursementsDAO rDAO) {
+		this.uDAO = uDAO;
+		this.rDAO = rDAO;
+	}
+	
 	UsersDAO uDAO = new UsersDAOImpl();
 	ReimbursementsDAO rDAO = new ReimbursementsDAOImpl();
 	ReimbursementLogic rLogic = new ReimbursementLogic();
+
+	
+
+
 
 	// grab a whole user to work with --
 	public User grabWholeUser(String userName, String password) {
