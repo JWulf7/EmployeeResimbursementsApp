@@ -514,3 +514,25 @@
 2020-01-12 12:01:03 INFO  LoginServlet:62 - Attempted login with username: Employee
 2020-01-12 12:01:03 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-12T12:01:03.704
 2020-01-12 12:01:18 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-12 18:01:37 INFO  LoginServlet:62 - Attempted login with username: jfkdsl
+2020-01-12 18:01:37 INFO  LoginServlet:102 - failed login with username: jfkdsl
+2020-01-12 18:02:53 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-12 18:02:53 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-12T18:02:53.729
+2020-01-12 18:08:39 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 4; Amount = $1000.0; Description = Brought Little Sebastian to Pawnee for Unity Day Festival
+2020-01-12 18:08:48 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-12 18:13:45 INFO  LoginServlet:61 - Attempted login with username: Manager
+2020-01-12 18:20:04 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-12 18:20:15 INFO  LoginServlet:61 - Attempted login with username: Manager
+2020-01-12 18:20:46 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-12 18:21:00 INFO  LoginServlet:61 - Attempted login with username: Manager
+2020-01-12 18:22:39 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.3 status was changed to: Pending
+2020-01-12 18:22:39 INFO  UpdateReimbursementStatusServlet:66 - Manager # 1, changed Reimbursement ID: 3 to Status: 1
+2020-01-12 18:24:21 INFO  ReimbursementsDAOImpl:210 - Reimbursement No.1 status was changed to: Pending
+2020-01-12 18:24:21 INFO  UpdateReimbursementStatusServlet:62 - Manager # 1, changed Reimbursement ID: 1 to Status: -1
+2020-01-12 18:25:34 INFO  NewUserServlet:62 - User created:[Username: Employee2, Firstname: Ron, Lastname: Swanson, User role#: 1, Email: mail@mail.com
+2020-01-12 18:25:43 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-12 18:25:57 INFO  LoginServlet:61 - Attempted login with username: Employee2
+2020-01-12 18:25:57 INFO  LoginServlet:85 - Employee2 succesfully logged in: 2020-01-12T18:25:57.527
+2020-01-12 18:26:55 INFO  NewReimbursementServlet:62 - User # 3 submitted new reimbursement: Type = 3; Amount = $89.0; Description = Lagavulin Scotch
+2020-01-12 18:33:43 INFO  LoginServlet:61 - Attempted login with username: Employee
+2020-01-12 18:33:44 INFO  LoginServlet:85 - Employee succesfully logged in: 2020-01-12T18:33:44.226

@@ -20,7 +20,6 @@ public class AllReimbursementsServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 634005650525646592L;
 	private static final Logger logger = LogManager.getLogger(AllReimbursementsServlet.class);
-	//private static Logger logger = Logger.getLogger(AllReimbursementsServlet.class);
 	
 	ReimbursementLogic rLogic = new ReimbursementLogic();
 	
@@ -43,7 +42,6 @@ public class AllReimbursementsServlet extends HttpServlet{
 		PrintWriter outputStream = res.getWriter();
 		res.setContentType("application/json");
 		res.setStatus(200);
-		System.out.println("inside the doGet method of AllReimbursementsServlet");
 		TreeMap<Integer, Reimbursement> allReimbursements = rLogic.grabAllCompleteReimbursements();
 		for(int i=1; i<allReimbursements.size();i++) {
 			allReimbursements.get(i).setReceipt(null);

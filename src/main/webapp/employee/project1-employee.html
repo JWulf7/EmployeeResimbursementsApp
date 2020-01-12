@@ -284,18 +284,11 @@
   	  			// implement individual user DOM manipulation here...
   	  			// display welcome user names
   	  			displayname.innerHTML = wholeUser.firstName + " " + wholeUser.lastName;
-  	  			console.log(wholeUser);
+  	  	
   	  			// input reimbursement data
   	  			let reims = wholeUser.userReimbursements;
-  	  			console.log(reims);
-  	  			//reimbursementTable.append()
-  	  		//	reims.forEach((row) => {
-  	  		//		console.log(row);
-  	  		//	});
-  	  			//for(reims.keySet i : reims) {
-  	  				
-  	  		//	}
-  	  			//Object.keys(reims).forEach(function(object) {
+  	  			
+  	  			
   	  			for(key in reims) {
   	  				var tr = document.createElement('tr');
   	  				tr.innerHTML = '<td>' + reims[key].reimId + '</td>' +
@@ -334,12 +327,8 @@
   		let file = event.target.files[0];
   		reader.onloadend = () => {
   			
-  			console.log(sessionStorage.getItem('data'));
-  		  if((!sessionStorage.getItem('data').includes(".jpg")) && (!sessionStorage.getItem('data').includes(".png"))) {
-              alert(".png and .jpg are acceptable file types");
-              window.location = "http://localhost:8080/Project1/project1-employee.html";
-              
-          }
+  			
+  		  
   			var data = reader.result.split(",")[1];
   			sessionStorage.setItem("data", data);
   			

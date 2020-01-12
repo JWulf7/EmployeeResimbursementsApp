@@ -24,7 +24,6 @@ import com.revature.services.UserLogic;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = LogManager.getLogger(LoginServlet.class);
-	// private static Logger logger = Logger.getLogger(LoginServlet.class);
 	UserLogic uLogic = new UserLogic();
 	// instantiate ObjectMapper ~~ provides functionality for reading and writing
 	// JSON
@@ -64,7 +63,6 @@ public class LoginServlet extends HttpServlet {
 		try {
 			User loggedUser = uLogic.login(username, passwordB4); // checks if user/password is correct and returns
 																	// whole user object
-			System.out.println(loggedUser.toString());
 
 			if ((loggedUser != null) && (loggedUser.getRole() == UserRoles.Employee)) { // this is where I should check
 																						// if user is a financial

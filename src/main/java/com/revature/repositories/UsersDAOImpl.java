@@ -14,7 +14,6 @@ import com.revature.web.LoginServlet;
 
 public class UsersDAOImpl implements UsersDAO {
 
-	//private static Logger logger = Logger.getLogger(UsersDAOImpl.class);
 	private static final Logger logger = LogManager.getLogger(UsersDAOImpl.class);
 	
 	public User getUserByUserName(String userName) {

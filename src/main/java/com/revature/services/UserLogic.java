@@ -39,20 +39,15 @@ public class UserLogic {
 	public User grabWholeUser(String userName, String password) {
 		User user = uDAO.getUserByUserName(userName);
 		if (user != null) {
-			System.out.println("uDAO.getUserByUserName returns user, which is not null");
 			if (user.getUserPassword().equals(password)) {
 				TreeMap<Integer, Reimbursement> reimbursements = rLogic.grabCompleteReimbursements(user.getUserId());
 				user.setUserReimbursements(reimbursements);
 				user.setRole(roleToEnum(user.getRoleNum()));
 				return user;
 			} else {
-				System.out.println("Passwords don't match");
-				System.out.println("password input as parameter: " + password);
-				System.out.println("Password of user object: " + user.getUserPassword());
 				return null;
 			}
 		} else {
-			System.out.println("getUserByUserName returns null");
 			return null;
 		}
 	}
@@ -66,7 +61,6 @@ public class UserLogic {
 			return role;
 		} else if(roleNum == 2) {
 			role = UserRoles.FinanceManager;
-			System.out.println("UserRoles is FinanceManager");
 			return role;
 		}
 		return null;

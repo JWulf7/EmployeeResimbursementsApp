@@ -41,10 +41,8 @@ public class UpdateReimbursementStatusServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 		throws ServletException, IOException {
-		System.out.println("Inside doPost of UpdateReimbursementStatusServlet");
 		HttpSession session = req.getSession();
 		int userID = (int) session.getAttribute("userID");
-		System.out.println(userID);
 		
 		
 		BufferedReader reader = req.getReader();
@@ -58,9 +56,7 @@ public class UpdateReimbursementStatusServlet extends HttpServlet{
 		ReimbursementStatusDTO reimbursementDTO = om.readValue(jsonInputString, ReimbursementStatusDTO.class);
 		int rID = reimbursementDTO.getReimID();
 		int rStatus = reimbursementDTO.getStatusNum();
-		System.out.println("Right before 'if' statement in doPost UpdateReimbursementStatusServlet");
-//		ReimbursementInput reimbursementInput = om.readValue(jsonInputString, ReimbursementInput.class);
-		//reimbursementInput.setAuthor(userID);
+
 		// make this into a conditional statement that executes if true/success or false failed vvvv
 		if(rLogic.updateStatus(rID, rStatus, userID)) {
 			logger.info("Manager # " + userID + ", changed Reimbursement ID: " + rID + " to Status: " + rStatus);
