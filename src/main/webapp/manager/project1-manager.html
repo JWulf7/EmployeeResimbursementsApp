@@ -11,6 +11,7 @@
     
     <title>ERS Manager</title>
     <script src="../scripts/loginscript.js"></script>
+    <script>console.log(sessionStorage.getItem("allReimbursements"));</script>
     <style>
         body {
             font-family: 'Ubuntu', sans-serif;
@@ -163,7 +164,7 @@
                     <th onclick="sortTable(6)">Author</th>
                     <th onclick="sortTable(7)">Resolver</th>
                     <th onclick="sortTable(8)">Date Resolved</th>
-                    <th onclick="sortTable(9)">Reciept</th>
+                    <th onclick="sortTable(9)">Receipt</th>
                 </tr>
                
             </thead>
@@ -200,7 +201,7 @@
           <h4 class="modal-title">Receipt</h4>
         </div>
         <div class="modal-body">
-          <img id="modalImg" src="getImage.php?id=1" width="175" height="200" />
+          <img id="modalImg" src="getImage.php?id=1" width="150%" height="150%" />
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -353,9 +354,9 @@ function searchTable() {
 
       //instantiate js object for json request
       let reimIdObject = {
-        reimId: reimId,
+        id: reimId,
       }
-
+		console.log("reimId is: " + reimId);
       // instantiate XHR object
       let xhr = new XMLHttpRequest();
 
@@ -363,10 +364,28 @@ function searchTable() {
       xhr.onreadystatechange = function() {
         if((this.readyState === 4) && (this.status === 200)) {
           console.log("receipt sent back response succesfully");
+          console.log("status: " + this.status);
+          console.log("readystate: " + this.readyState);
+          console.log(this.responseText);
+          let imageEle = document.getElementById("modalImg");
+          let res = this.responseText;
+          let src = "data:image/png;base64," + res;
+          console.log(src);
+          imageEle.setAttribute("src", src);
+          sessionStorage.removeItem('')
+          
+          
+          
+          
           // write code for doing something to img tag with id=modalImg (i want to change the src attribute to the actual src code data i believe)
+        } else if ((this.status === 200) || (this.readyState != 4)) {
+        	
         } else {
           // write some text about error in displaying reciept
-          console.log("receipt sent back response succesfully");
+          alert("Receipt retrieval unsuccessful.")
+          console.log("receipt sent back response unsuccesfully, it is an error");
+          console.log("status: " + this.status);
+          console.log("readystate: " + this.readyState);
         }
       }
 
@@ -378,6 +397,8 @@ function searchTable() {
   </script>
   
    <script>
+   var allReimbursementsString = sessionStorage.getItem("allReimbursements");
+   var allReimbursements = JSON.parse(allReimbursementsString);
   	function populateTable(userString) {
   		if(userString === null) {
   	  		window.location = "http://localhost:8080/Project1/"; // redirect back to the initial html 
@@ -393,6 +414,7 @@ function searchTable() {
   	  			console.log(allReimbursements);
   	  		
   	  			for(key in allReimbursements) {
+  	  			let num = allReimbursements[key];
   	  				var tr = document.createElement('tr');
   	  				tr.innerHTML = '<td>' + allReimbursements[key].reimId + '</td>' +
   	  				'<td>' + allReimbursements[key].timeSubmitted + '</td>' +
@@ -403,12 +425,12 @@ function searchTable() {
   	  				'<td>' + allReimbursements[key].author + '</td>' +
   	  				'<td>' + allReimbursements[key].resolver + '</td>' +
   	  				'<td>' + allReimbursements[key].timeResolved + '</td>' +
-  	  				'<td>' + `<button class="btn btn-primary btn-sm" onclick="showReceipt(allReimbursements[key].reimId)" data-toggle="modal" data-target="#myModal">View</button>` + '</td>';
+  	  				'<td>' + '<button id="' + allReimbursements[key].reimId + '" class="btn btn-primary btn-sm" onclick="showReceipt(this.id)" data-toggle="modal" data-target="#myModal">View</button>' + '</td>';
   	  				AllReimbursementsTable.appendChild(tr);
   	  				
   	  				
   	  			};
-  	  			
+  	  	/*		
   	  			function showReceipt(reimId) {
   		//probably need to start an xhr that links to a servlet that retrieves the reciept by reimId
 
@@ -435,8 +457,9 @@ function searchTable() {
       xhr.send(JSON.stringify(reimIdObject));
       // ^^^^ i think this will work.. might need to do a post??
 
-  	}
+  	}*/
   	  		}
+  	  		
   	  	}
   	}
   </script>
@@ -448,10 +471,10 @@ function searchTable() {
   	//let reimTable = document.getElementById('reimTable');
   	// grab the user object associated with the session
   	let userString = sessionStorage.getItem('currentUser');
-  	let allReimbursementsString = sessionStorage.getItem('allReimbursements');
+  	var allReimbursementsString = sessionStorage.getItem("allReimbursements");
   	// make sure not empty,
   	console.log(userString);
-  	console.log(allReimbursementsString);
+  	console.log("printing allReimbursementsString: " + allReimbursementsString);
   	populateTable(userString);
   </script>
  

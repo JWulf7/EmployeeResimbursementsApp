@@ -421,3 +421,96 @@
 2020-01-10 16:29:28 INFO  LoginServlet:62 - Attempted login with username: Employee
 2020-01-10 16:29:29 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-10T16:29:29.230
 2020-01-10 16:29:44 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $25.0; Description = Test
+2020-01-11 16:14:31 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:18:41 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:18:41 INFO  LoginServlet:102 - failed login with username: Manager
+2020-01-11 16:18:48 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:18:48 INFO  LoginServlet:102 - failed login with username: Manager
+2020-01-11 16:18:56 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:24:01 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:29:29 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:31:12 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:35:34 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:39:13 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:41:04 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 16:57:09 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 17:02:02 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 17:06:04 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 17:28:04 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 17:29:41 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 17:35:32 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 17:38:15 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 17:39:58 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-11 17:40:05 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 17:40:05 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T17:40:05.222
+2020-01-11 17:40:18 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-11 17:40:24 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 17:40:48 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-11 17:40:55 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 17:40:55 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T17:40:55.872
+2020-01-11 17:41:28 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $250.0; Description = Image Test 1
+2020-01-11 17:41:34 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-11 17:41:40 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 17:42:25 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-11 17:42:30 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 17:42:30 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T17:42:30.297
+2020-01-11 17:42:46 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 17:42:46 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T17:42:46.683
+2020-01-11 17:42:48 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 17:42:48 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T17:42:48.220
+2020-01-11 17:46:25 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 17:46:25 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T17:46:25.890
+2020-01-11 17:54:07 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 17:54:07 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T17:54:07.577
+2020-01-11 17:59:28 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 17:59:28 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T17:59:28.684
+2020-01-11 18:06:39 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 18:06:40 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T18:06:40.330
+2020-01-11 18:07:17 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 18:07:17 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T18:07:17.531
+2020-01-11 18:11:27 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 18:11:27 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T18:11:27.970
+2020-01-11 18:13:03 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 18:13:03 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T18:13:03.560
+2020-01-11 18:15:22 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 18:15:22 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T18:15:22.393
+2020-01-11 18:34:56 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $250.0; Description = JPG test
+2020-01-11 18:35:12 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $250.0; Description = PNG test
+2020-01-11 18:35:18 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-11 18:35:25 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 18:48:30 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 18:48:30 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T18:48:30.983
+2020-01-11 18:49:05 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 3; Amount = $49.99; Description = pdf test
+2020-01-11 18:49:27 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $49.99; Description = ffdsfsd
+2020-01-11 18:52:59 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-11 18:53:00 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-11T18:53:00.019
+2020-01-11 18:53:17 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 2; Amount = $25.0; Description = pdf test 2
+2020-01-11 18:53:31 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 3; Amount = $49.99; Description = png test
+2020-01-11 18:53:34 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-11 18:53:42 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-11 19:19:43 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-12 11:17:15 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-12 11:18:00 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-12 11:18:06 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-12 11:18:06 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-12T11:18:06.361
+2020-01-12 11:18:30 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 1; Amount = $49.99; Description = Receipt1
+2020-01-12 11:18:32 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-12 11:18:37 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-12 11:30:01 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-12 11:42:11 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-12 11:42:16 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-12 11:42:16 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-12T11:42:16.543
+2020-01-12 11:42:33 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 3; Amount = $1000.0; Description = Receipt2
+2020-01-12 11:42:34 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-12 11:42:39 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-12 11:43:09 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-12 11:57:58 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-12 11:57:58 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-12T11:57:58.461
+2020-01-12 11:59:12 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 3; Amount = $49.99; Description = Business Dinner.  Got the lobster b/c i could...
+2020-01-12 11:59:40 INFO  NewReimbursementServlet:83 - User # 2 submitted new reimbursement: Type = 4; Amount = $9.99; Description = Enthuware
+2020-01-12 11:59:47 INFO  LogoutServlet:28 - user: Employee has logged out
+2020-01-12 11:59:59 INFO  LoginServlet:62 - Attempted login with username: Manager
+2020-01-12 12:00:57 INFO  LogoutServlet:28 - user: Manager has logged out
+2020-01-12 12:01:03 INFO  LoginServlet:62 - Attempted login with username: Employee
+2020-01-12 12:01:03 INFO  LoginServlet:87 - Employee succesfully logged in: 2020-01-12T12:01:03.704
+2020-01-12 12:01:18 INFO  LogoutServlet:28 - user: Employee has logged out

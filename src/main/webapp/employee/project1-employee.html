@@ -333,6 +333,13 @@
   		var reader = new FileReader();
   		let file = event.target.files[0];
   		reader.onloadend = () => {
+  			
+  			console.log(sessionStorage.getItem('data'));
+  		  if((!sessionStorage.getItem('data').includes(".jpg")) && (!sessionStorage.getItem('data').includes(".png"))) {
+              alert(".png and .jpg are acceptable file types");
+              window.location = "http://localhost:8080/Project1/project1-employee.html";
+              
+          }
   			var data = reader.result.split(",")[1];
   			sessionStorage.setItem("data", data);
   			
@@ -370,6 +377,12 @@
     	formdata.append('typeNum', form.typeNum.value);
     	formdata.append('description', form.description.value);
     	formdata.append('file', sessionStorage.getItem('data'));
+        
+        if((!sessionStorage.getItem('data').includes(".jpg")) && (!sessionStorage.getItem('data').includes(".png"))) {
+            alert(".png and .jpg are acceptable file types");
+            window.location = "http://localhost:8080/Project1/project1-employee.html";
+            
+        }
     	
     	
     	// instantiate xhr
